@@ -293,6 +293,32 @@ export function removeCustomImage(id: string): SiteImage[] {
   return updated;
 }
 
+// Reset standard system image URL to its factory original
+export function resetImageToDefault(id: string): SiteImage[] {
+  const current = getSavedImages();
+  const original = defaultImages.find(img => img.id === id);
+  if (!original) return current;
+
+  const updated = current.map(img => {
+    if (img.id === id) {
+      return { ...img, url: original.url };
+    }
+    return img;
+  });
+  saveImages(updated);
+
+  // Asynchronous background persistence to Supabase
+  if (isSupabaseConfigured()) {
+    saveMetadataToSupabase(updated).then((res) => {
+      if (res) {
+        window.dispatchEvent(new CustomEvent('maxpecas_images_updated', { detail: updated }));
+      }
+    });
+  }
+
+  return updated;
+}
+
 // Get specific image URL (fallback to default if not found)
 export function getImageUrl(id: string, fallbackUrl?: string): string {
   const images = getSavedImages();

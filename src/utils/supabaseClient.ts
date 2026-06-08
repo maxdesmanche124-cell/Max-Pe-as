@@ -43,11 +43,9 @@ export async function ensureBucketExists(): Promise<boolean> {
   try {
     const { data: buckets, error } = await supabase.storage.listBuckets();
     if (error) {
-      console.warn('Error listing buckets in Supabase:', error.message);
-      console.error(
-        `🚨 DIAGNÓSTICO DE INICIALIZAÇÃO DO BUCKET:\n` +
-        `Ao listar os buckets do Supabase, ocorreu o erro: "${error.message}". Código: ${error.name}.\n` +
-        `Geralmente isso ocorre se a API de Storage não está exposta no endpoint ou se o bucket "site-images" precisa ser criado manualmente através do painel do Supabase com o nome EXATO de "site-images" marcado como PÚBLICO.`
+      console.warn('[Supabase Config] Nao foi possivel listar os buckets:', error.message);
+      console.warn(
+        'Dica de configuracao: Caso o bucket "site-images" nao exista, crie-o manualmente no painel da Supabase com acesso Public.'
       );
       return false;
     }
@@ -58,18 +56,16 @@ export async function ensureBucketExists(): Promise<boolean> {
         fileSizeLimit: 5242880, // 5MB
       });
       if (createError) {
-        console.warn('Failed to auto-create bucket "site-images":', createError.message);
-        console.error(
-          `🚨 ERRO AO CRIAR BUCKET AUTOMATICAMENTE:\n` +
-          `O cliente anônimo não possui permissão para criar buckets automáticos no seu projeto do Supabase.\n` +
-          `Por favor, acesse seu painel do Supabase (https://supabase.com), vá em Storage, clique em "New bucket", defina o nome como "site-images" (letras minúsculas) e marque a opção "Public bucket" como ATIVADA.`
+        console.warn('[Supabase Config] Falha ao tentar criar o bucket "site-images" via Anon Key:', createError.message);
+        console.warn(
+          'Aviso: O cliente anonimo nao possui permissao de criar buckets automaticamente no Supabase. Crie-o manualmente com o nome de "site-images" e tipo Public.'
         );
         return false;
       }
     }
     return true;
   } catch (err) {
-    console.error('ensureBucketExists error:', err);
+    console.warn('[Supabase Config] Erro ao garantir existencia do bucket:', err);
     return false;
   }
 }
@@ -90,18 +86,9 @@ export async function uploadToStorage(
       });
 
     if (error) {
-      console.error(`[SUPABASE ERROR] Falha no upload para o caminho "${filePath}":`, error.message, error);
-      console.error(
-        `🚨 INSTRUÇÕES DE DIAGNÓSTICO DO SUPABASE STORAGE:\n` +
-        `Para resolver o erro "${error.message}", certifique-se de que no seu painel do Supabase:\n` +
-        `1. O bucket "site-images" exista e seja do tipo PÚBLICO (Public).\n` +
-        `2. Você tenha configurado as políticas de RLS (Row Level Security) para habilitar uploads anônimos/públicos. No SQL Editor do Supabase, execute o seguinte comando:\n\n` +
-        `   -- 1. Permitir que qualquer pessoa acesse os arquivos públicos\n` +
-        `   CREATE POLICY "Acesso Publico de Leitura" ON storage.objects FOR SELECT USING (bucket_id = 'site-images');\n\n` +
-        `   -- 2. Permitir inserts/uploads na pasta 'uploads' ou no bucket 'site-images'\n` +
-        `   CREATE POLICY "Permitir Upload Publico" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'site-images');\n\n` +
-        `   -- 3. Permitir atualização rápida se necessário (upsert/update)\n` +
-        `   CREATE POLICY "Permitir Update Publico" ON storage.objects FOR UPDATE USING (bucket_id = 'site-images');\n`
+      console.warn(`[Supabase Upload] Nao foi possivel salvar no caminho "${filePath}":`, error.message);
+      console.warn(
+        'Caso receba erro de Row Level Security (RLS), lembre-se de configurar as permissoes para Insert/Select do bucket "site-images" no seu dashboard do Supabase.'
       );
       return null;
     }
@@ -109,7 +96,7 @@ export async function uploadToStorage(
     const { data } = supabase.storage.from('site-images').getPublicUrl(filePath);
     return data.publicUrl;
   } catch (err) {
-    console.error(`Error in uploadToStorage for "${filePath}":`, err);
+    console.warn(`[Supabase Upload] Erro no upload para "${filePath}":`, err);
     return null;
   }
 }
@@ -125,7 +112,7 @@ export async function deleteFromStorage(filePath: string): Promise<boolean> {
     }
     return true;
   } catch (err) {
-    console.error(`Error deleting storage file for "${filePath}":`, err);
+    console.warn(`Error deleting storage file for "${filePath}":`, err);
     return false;
   }
 }

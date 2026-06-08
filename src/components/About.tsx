@@ -46,12 +46,12 @@ export default function About() {
             </p>
 
             {/* Strategic visual about section image loaded via our image manager */}
-            <div className="relative h-44 w-full rounded overflow-hidden border border-stone-200 shadow-sm">
+            <div className="relative aspect-square w-full rounded border border-stone-200 bg-stone-50 overflow-hidden flex items-center justify-center p-4">
               <img
                 src={getImageUrl('inst-about-main', 'https://images.unsplash.com/photo-1504215680048-db15fc060c3a?auto=format&fit=crop&q=80&w=600')}
                 alt="Equipe Técnica e Estoque de Peças MAXPEÇAS"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-center group-hover:scale-102 transition-transform duration-500"
+                className="max-w-full max-h-full object-contain group-hover:scale-102 transition-transform duration-500"
               />
               <div className="absolute inset-x-0 bottom-0 bg-stone-900/60 p-2 text-stone-200 text-[10px] uppercase font-mono text-center">
                 Organização mecânica rigorosa desde a catalogação

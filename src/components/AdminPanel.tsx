@@ -5,7 +5,8 @@ import {
 } from 'lucide-react';
 import { 
   getSavedImages, updateImageUrl, addCustomImage, 
-  removeCustomImage, SiteImage, saveImages, migrateAllImagesToSupabase, saveMetadataToSupabase
+  removeCustomImage, SiteImage, saveImages, migrateAllImagesToSupabase, saveMetadataToSupabase,
+  resetImageToDefault
 } from '../utils/imageStore';
 import { isSupabaseConfigured } from '../utils/supabaseClient';
 
@@ -189,6 +190,14 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
       const updated = removeCustomImage(id);
       setImages(updated);
       showFeedback('Imagem personalizada removida com sucesso!');
+    }
+  };
+
+  const handleResetImage = (id: string) => {
+    if (confirm('Deseja realmente remover a foto substituída e retornar este item para a imagem padrão do site?')) {
+      const updated = resetImageToDefault(id);
+      setImages(updated);
+      showFeedback('Imagem restaurada para o padrão com sucesso!');
     }
   };
 
@@ -720,13 +729,21 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
                                 >
                                   <RefreshCw className="h-3 w-3" /> Substituir Mídia
                                 </button>
-                                {img.isCustom && (
+                                {img.isCustom ? (
                                   <button
                                     onClick={() => handleRemoveImage(img.id, img.isCustom)}
                                     className="inline-flex items-center gap-1 text-[11px] text-stone-550 hover:text-red-500 transition-colors uppercase cursor-pointer"
                                     title="Remover mídia customizada permanentemente"
                                   >
                                     <Trash2 className="h-3 w-3" /> Remover
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={() => handleResetImage(img.id)}
+                                    className="inline-flex items-center gap-1 text-[11px] text-stone-550 hover:text-red-500 transition-colors uppercase cursor-pointer"
+                                    title="Remover foto enviada e restaurar original"
+                                  >
+                                    <Trash2 className="h-3 w-3" /> Remover/Redefinir
                                   </button>
                                 )}
                               </div>
