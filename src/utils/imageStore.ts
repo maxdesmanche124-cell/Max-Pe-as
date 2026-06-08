@@ -107,26 +107,44 @@ export const defaultImages: SiteImage[] = [
 // memoryCache ensures speedy local lookups and renders on app mount
 let memoryCache: SiteImage[] = [];
 
+// Memory cache for category images from Supabase table
+export let categoryImagesCache: Record<string, string> = {};
+
 // Helper to query current state of images
 export function getSavedImages(): SiteImage[] {
+  let images: SiteImage[] = [];
   if (memoryCache.length > 0) {
-    return memoryCache;
+    images = memoryCache;
+  } else if (typeof window === 'undefined') {
+    images = defaultImages;
+  } else {
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (!raw) {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(defaultImages));
+      memoryCache = [...defaultImages];
+      images = defaultImages;
+    } else {
+      try {
+        const parsed = JSON.parse(raw);
+        memoryCache = parsed;
+        images = parsed;
+      } catch (err) {
+        memoryCache = [...defaultImages];
+        images = defaultImages;
+      }
+    }
   }
-  if (typeof window === 'undefined') return defaultImages;
-  const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (!raw) {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(defaultImages));
-    memoryCache = [...defaultImages];
-    return defaultImages;
-  }
-  try {
-    const parsed = JSON.parse(raw);
-    memoryCache = parsed;
-    return parsed;
-  } catch (err) {
-    memoryCache = [...defaultImages];
-    return defaultImages;
-  }
+
+  // Inject loaded category images from the table cache (Supabase DB)
+  return images.map(img => {
+    if (img.id.startsWith('category-img-')) {
+      const catId = img.id.replace('category-img-', '');
+      if (categoryImagesCache[catId]) {
+        return { ...img, url: categoryImagesCache[catId] };
+      }
+    }
+    return img;
+  });
 }
 
 export function saveImages(images: SiteImage[]) {
@@ -220,6 +238,109 @@ export async function migrateAllImagesToSupabase(
   return migratedList;
 }
 
+// Fetch category images from Supabase table 'category_images'
+export async function fetchCategoryImagesFromSupabase(): Promise<Record<string, string>> {
+  if (!isSupabaseConfigured() || !supabase) return {};
+  try {
+    const { data, error } = await supabase
+      .from('category_images')
+      .select('id, url');
+    
+    if (error) {
+      console.warn(
+        `[Supabase Table Error] Erro ao carregar a tabela "category_images": ${error.message}\n` +
+        `Por favor, execute o seguinte SQL no editor SQL do seu painel do Supabase:\n\n` +
+        `CREATE TABLE category_images (\n` +
+        `  id TEXT PRIMARY KEY,\n` +
+        `  url TEXT NOT NULL,\n` +
+        `  updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW() NOT NULL\n` +
+        `);\n\n` +
+        `E lembre-se de de-ativar o RLS ou criar uma política permissiva (Read & Write para anon) para esta tabela.`
+      );
+      return {};
+    }
+    
+    const fetched: Record<string, string> = {};
+    if (data) {
+      data.forEach((row: any) => {
+        fetched[row.id] = row.url;
+      });
+    }
+    categoryImagesCache = fetched;
+    
+    // Also save simple values to local storage strictly as a secondary instant-load cache (NOT primary source)
+    if (typeof window !== 'undefined') {
+      Object.entries(fetched).forEach(([catId, url]) => {
+        localStorage.setItem(`maxpecas_category_img_${catId}`, url);
+      });
+    }
+    
+    // Dispatch an event to notify components that category images have updated
+    window.dispatchEvent(new CustomEvent('maxpecas_category_images_updated', { detail: fetched }));
+    
+    return fetched;
+  } catch (err) {
+    console.error('Failed to fetch category images from Supabase table:', err);
+    return {};
+  }
+}
+
+// Save category image URL to Supabase table 'category_images'
+export async function saveCategoryImageToSupabase(id: string, url: string): Promise<boolean> {
+  if (!isSupabaseConfigured() || !supabase) return false;
+  try {
+    const { error } = await supabase
+      .from('category_images')
+      .upsert({ id, url }, { onConflict: 'id' });
+    
+    if (error) {
+      console.error(`Error saving category image for ${id} to Supabase table:`, error.message);
+      return false;
+    }
+    
+    // Update local variables
+    categoryImagesCache[id] = url;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`maxpecas_category_img_${id}`, url);
+    }
+    
+    // Dispatch update event
+    window.dispatchEvent(new CustomEvent('maxpecas_category_images_updated', { detail: categoryImagesCache }));
+    return true;
+  } catch (err) {
+    console.error(`Failed to save category image for ${id} to Supabase table:`, err);
+    return false;
+  }
+}
+
+// Delete category image URL from Supabase table 'category_images'
+export async function deleteCategoryImageFromSupabase(id: string): Promise<boolean> {
+  if (!isSupabaseConfigured() || !supabase) return false;
+  try {
+    const { error } = await supabase
+      .from('category_images')
+      .delete()
+      .eq('id', id);
+    
+    if (error) {
+      console.error(`Error deleting category image for ${id} from Supabase table:`, error.message);
+      return false;
+    }
+    
+    delete categoryImagesCache[id];
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(`maxpecas_category_img_${id}`);
+    }
+    
+    // Dispatch update event
+    window.dispatchEvent(new CustomEvent('maxpecas_category_images_updated', { detail: categoryImagesCache }));
+    return true;
+  } catch (err) {
+    console.error(`Failed to delete category image for ${id} from Supabase table:`, err);
+    return false;
+  }
+}
+
 // Update single image URL
 export function updateImageUrl(id: string, newUrl: string): SiteImage[] {
   const current = getSavedImages();
@@ -230,6 +351,14 @@ export function updateImageUrl(id: string, newUrl: string): SiteImage[] {
     return img;
   });
   saveImages(updated);
+  
+  // Intercept category image update and save directly to Supabase table 'category_images'
+  if (id.startsWith('category-img-')) {
+    const categoryId = id.replace('category-img-', '');
+    if (isSupabaseConfigured() && supabase) {
+      saveCategoryImageToSupabase(categoryId, newUrl);
+    }
+  }
   
   // Asynchronous background persistence to Supabase
   if (isSupabaseConfigured()) {
@@ -307,6 +436,14 @@ export function resetImageToDefault(id: string): SiteImage[] {
   });
   saveImages(updated);
 
+  // If a category image is reset, remove it from the Supabase table 'category_images'
+  if (id.startsWith('category-img-')) {
+    const categoryId = id.replace('category-img-', '');
+    if (isSupabaseConfigured() && supabase) {
+      deleteCategoryImageFromSupabase(categoryId);
+    }
+  }
+
   // Asynchronous background persistence to Supabase
   if (isSupabaseConfigured()) {
     saveMetadataToSupabase(updated).then((res) => {
@@ -321,6 +458,22 @@ export function resetImageToDefault(id: string): SiteImage[] {
 
 // Get specific image URL (fallback to default if not found)
 export function getImageUrl(id: string, fallbackUrl?: string): string {
+  // If it is a category image, check the in-memory/Supabase-table database cache first
+  if (id.startsWith('category-img-')) {
+    const categoryId = id.replace('category-img-', '');
+    if (categoryImagesCache[categoryId]) {
+      return categoryImagesCache[categoryId];
+    }
+    // Secondary fallback just to prevent blank if table is still loading
+    if (typeof window !== 'undefined') {
+      const cached = localStorage.getItem(`maxpecas_category_img_${categoryId}`);
+      if (cached) {
+        categoryImagesCache[categoryId] = cached;
+        return cached;
+      }
+    }
+  }
+
   const images = getSavedImages();
   const match = images.find(img => img.id === id);
   return match?.url || fallbackUrl || 'https://images.unsplash.com/photo-1504215680048-db15fc060c3a?auto=format&fit=crop&q=80&w=400';

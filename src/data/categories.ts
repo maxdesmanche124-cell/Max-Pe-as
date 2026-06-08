@@ -2,7 +2,7 @@ import { PartCategory, Differential, Review, FAQItem } from '../types';
 
 export const CATEGORIES: PartCategory[] = [
   {
-    id: '1',
+    id: 'motores',
     name: 'Motores',
     description: 'Motores usados e seminovos conforme disponibilidade. Consulte compatibilidade com nossa equipe.',
     iconName: 'Fuel',
@@ -11,7 +11,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'MOT'
   },
   {
-    id: '2',
+    id: 'cabecotes',
     name: 'Cabeçotes',
     description: 'Cabeçotes seminovos de motores nacionais e importados, conferidos e inspecionados para consulta.',
     iconName: 'Cpu',
@@ -20,7 +20,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'CAB'
   },
   {
-    id: '3',
+    id: 'cambios',
     name: 'Câmbios',
     description: 'Câmbios manuais, automáticos e componentes relacionados. Atendimento para orçamento.',
     iconName: 'Settings',
@@ -29,7 +29,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'CAM'
   },
   {
-    id: '4',
+    id: 'portas',
     name: 'Portas',
     description: 'Portas originais usadas conforme disponibilidade técnica de estoque.',
     iconName: 'Square',
@@ -38,7 +38,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'POR'
   },
   {
-    id: '5',
+    id: 'capos',
     name: 'Capôs',
     description: 'Capôs usados e seminovos para reposição compatível sob consulta.',
     iconName: 'FolderOpen',
@@ -47,7 +47,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'CAP'
   },
   {
-    id: '6',
+    id: 'parachoques',
     name: 'Para-choques',
     description: 'Para-choques prontos para adequação e montagem conforme estoque.',
     iconName: 'Maximize',
@@ -56,7 +56,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'PAR'
   },
   {
-    id: '7',
+    id: 'bancos',
     name: 'Bancos',
     description: 'Bancos em tecido ou couro, sob consulta de conservação e modelos em estoque.',
     iconName: 'Armchair',
@@ -65,7 +65,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'BAN'
   },
   {
-    id: '8',
+    id: 'rodas',
     name: 'Rodas',
     description: 'Jogos de rodas e unidades avulsas usados sob consulta de disponibilidade.',
     iconName: 'Disc',
@@ -74,7 +74,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'ROD'
   },
   {
-    id: '9',
+    id: 'farois',
     name: 'Faróis',
     description: 'Faróis e componentes de iluminação conforme estoque disponível.',
     iconName: 'Sun',
@@ -83,7 +83,7 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'FAR'
   },
   {
-    id: '10',
+    id: 'lanternas',
     name: 'Lanternas',
     description: 'Lanternas traseiras e componentes sobressalentes para identificação.',
     iconName: 'Lightbulb',
@@ -92,16 +92,16 @@ export const CATEGORIES: PartCategory[] = [
     categoryCode: 'LAN'
   },
   {
-    id: '11',
+    id: 'suspensao',
     name: 'Suspensão',
-    description: 'Quadros de suspensão, amortecedores, balanças e mangas de eixo usados e seminovos.',
+    description: 'Quadros de suspension, amortecedores, balanças e mangas de eixo usados e seminovos.',
     iconName: 'Activity',
     popularVehicles: ['Nacionais', 'Importados', 'Multimarcas', 'Sob consulta'],
     imageUrl: 'https://images.unsplash.com/photo-1562620658-963b65287349?auto=format&fit=crop&q=80&w=400',
     categoryCode: 'SUS'
   },
   {
-    id: '12',
+    id: 'pecas-eletricas',
     name: 'Peças Elétricas e Eletrônicas',
     description: 'Módulos e centrais eletrônicas conforme disponibilidade. Confirme aplicação antes da compra e consulte nossa equipe.',
     iconName: 'Zap',

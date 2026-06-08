@@ -16,7 +16,7 @@ import ComplianceModals from './components/ComplianceModals';
 import AdminPanel from './components/AdminPanel';
 import LegalPage from './components/LegalPage';
 import { ComplianceDocType } from './types';
-import { syncImagesWithSupabase } from './utils/imageStore';
+import { syncImagesWithSupabase, fetchCategoryImagesFromSupabase } from './utils/imageStore';
 
 export default function App() {
   const [activeDoc, setActiveDoc] = useState<ComplianceDocType>(null);
@@ -33,14 +33,23 @@ export default function App() {
       }
     });
 
+    // 1.1 Fetch category images from Supabase table 'category_images'
+    fetchCategoryImagesFromSupabase().then((fetchedMap) => {
+      if (fetchedMap && Object.keys(fetchedMap).length > 0) {
+        setImagesVersion((v) => v + 1);
+      }
+    });
+
     // 2. Refresh immediately when another component issues maxpecas_images_updated
     const handleSyncUpdate = (e: Event) => {
       setImagesVersion((v) => v + 1);
     };
 
     window.addEventListener('maxpecas_images_updated', handleSyncUpdate);
+    window.addEventListener('maxpecas_category_images_updated', handleSyncUpdate);
     return () => {
       window.removeEventListener('maxpecas_images_updated', handleSyncUpdate);
+      window.removeEventListener('maxpecas_category_images_updated', handleSyncUpdate);
     };
   }, []);
 
