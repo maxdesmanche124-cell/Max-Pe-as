@@ -117,7 +117,14 @@ export default function Footer({ onOpenDoc }: FooterProps) {
               <li className="flex items-start gap-2.5">
                 <Phone className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
                 <div>
-                  <p className="text-stone-300 font-bold">(31) 98825-4981</p>
+                  <a 
+                    href="https://wa.me/558000003728" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="hover:text-emerald-500 transition-colors"
+                  >
+                    <p className="text-stone-300 font-bold">0800 000 3728</p>
+                  </a>
                   <p className="text-[11px] text-stone-500">Orçamentos WhatsApp</p>
                 </div>
               </li>

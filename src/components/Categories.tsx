@@ -35,10 +35,10 @@ export default function Categories() {
     category.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleQuoteClick = (categoryName: string) => {
+  const getWhatsAppUrl = (categoryName: string) => {
     const text = `Olá, gostaria de fazer um orçamento de ${categoryName.toLowerCase()} para meu veículo.`;
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/5531988254981?text=${encoded}`, '_blank');
+    return `https://wa.me/558000003728?text=${encoded}`;
   };
 
   return (
@@ -86,14 +86,16 @@ export default function Categories() {
               Fale com nossa equipe no WhatsApp e consulte a disponibilidade.
             </p>
           </div>
-          <button
-            onClick={() => handleQuoteClick('específico')}
+          <a
+            href={getWhatsAppUrl('específico')}
+            target="_blank"
+            rel="noopener noreferrer"
             id="cat-top-whats-cta"
-            className="w-full md:w-auto flex items-center justify-center gap-2.5 bg-red-600 hover:bg-red-700 text-white hover:text-white font-bold text-sm py-3.5 px-6 rounded-xs shadow-xs hover:shadow-md transition-all uppercase italic tracking-wider cursor-pointer"
+            className="w-full md:w-auto flex items-center justify-center gap-2.5 bg-red-650 hover:bg-red-700 text-white hover:text-white font-bold text-sm py-3.5 px-6 rounded-xs shadow-xs hover:shadow-md transition-all uppercase italic tracking-wider cursor-pointer"
           >
             <WhatsAppIcon className="h-4.5 w-4.5" />
             Consultar agora no WhatsApp
-          </button>
+          </a>
         </div>
 
         {/* Categories Grid layout with subtle animations and scroll reveals */}
@@ -153,15 +155,17 @@ export default function Categories() {
                     ))}
                   </div>
 
-                  <button
-                    onClick={() => handleQuoteClick(category.name)}
+                  <a
+                    href={getWhatsAppUrl(category.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     id={`btn-quote-category-${category.id}`}
                     className="w-full flex items-center justify-center gap-2 bg-stone-950 hover:bg-emerald-600 text-white hover:text-white font-bold text-xs py-3 px-3 rounded-sm shadow-xs transition-all duration-300 cursor-pointer uppercase italic tracking-wider"
                   >
                     <WhatsAppIcon className="h-4 w-4" />
                     Consultar disponibilidade da peça
                     <ArrowRight className="h-3 w-3 translate-x-0 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -173,14 +177,16 @@ export default function Categories() {
             <p className="text-stone-650 text-sm px-6">
               Não se preocupe! Mesmo que sua categoria não esteja descrita exatamente na busca, você pode falar diretamente com nossa equipe técnica que buscará em nosso sistema de estoque integrado de forma personalizada.
             </p>
-            <button
-              onClick={() => handleQuoteClick('outra peça')}
+            <a
+              href={getWhatsAppUrl('outra peça')}
+              target="_blank"
+              rel="noopener noreferrer"
               id="search-empty-fallback-btn"
               className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-5 py-2.5 rounded-lg cursor-pointer transition-colors"
             >
               <WhatsAppIcon className="h-4 w-4" />
               Perguntar por Peça Específica
-            </button>
+            </a>
           </div>
         )}
 

@@ -165,7 +165,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Trâmite de Devoluções</h3>
               <p>
-                Para início formal do protocolo de trocas ou estornos, envie mensagem direta ao WhatsApp Oficial de Suporte no número <strong>(31) 98825-4981</strong> ou relate o ocorrido detalhadamente para <strong>contato.maxpecas@gmail.com</strong> anexando foto da etiqueta do produto e número da Nota Fiscal de venda correspondente.
+                Para início formal do protocolo de trocas ou estornos, envie mensagem direta ao WhatsApp Oficial de Suporte no número <strong>0800 000 3728</strong> ou relate o ocorrido detalhadamente para <strong>contato.maxpecas@gmail.com</strong> anexando foto da etiqueta do produto e número da Nota Fiscal de venda correspondente.
               </p>
             </div>
           </>

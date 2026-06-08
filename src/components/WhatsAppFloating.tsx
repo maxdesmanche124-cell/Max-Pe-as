@@ -4,6 +4,7 @@ import WhatsAppIcon from './WhatsAppIcon';
 
 export default function WhatsAppFloating() {
   const [showChip, setShowChip] = useState(false);
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.';
 
   useEffect(() => {
     // Show a helpful conversion chip 3 seconds after load to engage the user
@@ -12,10 +13,6 @@ export default function WhatsAppFloating() {
     }, 3000);
     return () => clearTimeout(timer);
   }, []);
-
-  const handleWhatsAppAction = () => {
-    window.open('https://wa.me/5531988254981?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.', '_blank');
-  };
 
   return (
     <div className="fixed bottom-6 right-6 z-45 flex flex-col items-end gap-3 pointer-events-auto" id="whatsapp-floating-widget">
@@ -44,8 +41,10 @@ export default function WhatsAppFloating() {
       )}
 
       {/* Floating Action Pulsing Circular button */}
-      <button
-        onClick={handleWhatsAppAction}
+      <a
+        href={whatsAppUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         id="floating-pulsing-wa-btn"
         className="h-14 w-14 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-xl animate-pulse-green transform hover:scale-105 transition-all outline-none border-0 cursor-pointer"
         aria-label="Atendimento Urgente via WhatsApp"
@@ -53,7 +52,7 @@ export default function WhatsAppFloating() {
       >
         {/* Customized high fidelity icon widget */}
         <WhatsAppIcon className="h-7 w-7 text-white animate-pulse" />
-      </button>
+      </a>
     </div>
   );
 }

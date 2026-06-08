@@ -32,16 +32,14 @@ export default function Header({ onOpenDoc }: HeaderProps) {
     { name: 'Localização', href: '#localizacao' }
   ];
 
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/5531988254981?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.', '_blank');
-  };
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.';
 
   return (
     <header
       id="main-app-header"
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         scrolled
-          ? 'bg-[#1A1C1E]/95 backdrop-blur-md shadow-lg py-3 border-b-2 border-red-600'
+          ? 'bg-[#1A1C1E]/95 backdrop-blur-md shadow-lg py-3 border-b-2 border-red-650'
           : 'bg-[#1A1C1E]/80 backdrop-blur-xs py-4 border-b border-white/5'
       }`}
     >
@@ -50,7 +48,7 @@ export default function Header({ onOpenDoc }: HeaderProps) {
           
           {/* Logo Brand - Sleek Skewed Design */}
           <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
-            <div className="bg-red-600 px-3.5 py-1.5 font-display font-black text-xl text-white italic skew-x-[-10deg] tracking-tight group-hover:scale-102 transition-transform duration-250">
+            <div className="bg-red-650 px-3.5 py-1.5 font-display font-black text-xl text-white italic skew-x-[-10deg] tracking-tight group-hover:scale-102 transition-transform duration-250">
               MAXPEÇAS
             </div>
             <div className="hidden md:flex flex-col">
@@ -82,26 +80,30 @@ export default function Header({ onOpenDoc }: HeaderProps) {
               <ShieldAlert className="h-4 w-4 text-emerald-500" />
               Procedência Verificada
             </span>
-            <button
-              onClick={handleWhatsAppClick}
+            <a
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               id="header-cta-whatsapp-btn"
               className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium text-sm px-4 py-2.5 rounded-lg shadow-md transform hover:-translate-y-0.5 transition-all cursor-pointer"
             >
               <WhatsAppIcon className="h-4 w-4" />
               Orçamento WhatsApp
-            </button>
+            </a>
           </div>
 
           {/* Mobile menu button */}
           <div className="flex lg:hidden items-center gap-2">
-            <button
-              onClick={handleWhatsAppClick}
+            <a
+              href={whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               id="header-mobile-quick-wa-btn"
               className="sm:hidden p-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition-all cursor-pointer flex items-center justify-center"
               title="Orçamento WhatsApp Rápido"
             >
               <WhatsAppIcon className="h-4 w-4" />
-            </button>
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
               id="header-mobile-toggle-btn"
@@ -134,17 +136,17 @@ export default function Header({ onOpenDoc }: HeaderProps) {
               </a>
             ))}
             <div className="pt-4 px-3 flex flex-col gap-3">
-              <button
-                onClick={() => {
-                  setIsOpen(false);
-                  handleWhatsAppClick();
-                }}
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsOpen(false)}
                 id="header-mobile-cta"
-                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all text-center cursor-pointer"
+                className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all text-center cursor-pointer text-base"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 Falar no WhatsApp (Grátis)
-              </button>
+              </a>
               <div className="flex justify-around text-xs text-stone-400 pt-2 border-t border-stone-900">
                 <button 
                   onClick={() => { setIsOpen(false); onOpenDoc('garantia'); }}

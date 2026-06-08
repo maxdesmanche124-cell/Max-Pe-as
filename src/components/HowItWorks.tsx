@@ -29,9 +29,7 @@ export default function HowItWorks() {
     }
   ];
 
-  const handleWhatsAppStep = () => {
-    window.open('https://wa.me/553198825498?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.', '_blank');
-  };
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.';
 
   return (
     <section id="como-funciona" className="py-20 md:py-28 bg-[#1A1C1E] text-white relative overflow-hidden">
@@ -93,14 +91,16 @@ export default function HowItWorks() {
 
         {/* Centralised call to action */}
         <div className="mt-16 text-center">
-          <button
-            onClick={handleWhatsAppStep}
+          <a
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             id="how-it-works-cta-btn"
             className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold text-base px-8 py-3.5 rounded-sm shadow-lg hover:shadow-red-900/10 cursor-pointer duration-200 uppercase italic tracking-wider border-b-2 border-white/20"
           >
             <MessageCircle className="h-5 w-5" />
             Entrar em Contato e Solicitar Peça
-          </button>
+          </a>
           <p className="text-stone-500 text-xs mt-3">
             Atendimento humanizado disponível das 08h às 18h de Segunda a Sexta, e das 08h às 12h aos Sábados.
           </p>

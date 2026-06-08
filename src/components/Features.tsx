@@ -79,11 +79,11 @@ export default function Features() {
             </div>
           </div>
           <a
-            href="https://wa.me/553198825498?text=Olá,%20gostaria%2520de%2520consultar%2520uma%2520peça."
+            href="https://wa.me/558000003728?text=Olá,%20gostaria%20de%20consultar%20uma%20peça."
             target="_blank"
             rel="noopener noreferrer"
             id="diff-bottom-wa-btn"
-            className="flex items-center gap-2 bg-stone-900 hover:bg-[#1A1C1E] text-white font-bold text-sm px-6 py-3.5 rounded-sm transition-all cursor-pointer uppercase italic tracking-wider border-b-2 border-red-600"
+            className="flex items-center gap-2 bg-stone-900 hover:bg-[#1A1C1E] text-white font-bold text-sm px-6 py-3.5 rounded-sm transition-all cursor-pointer uppercase italic tracking-wider border-b-2 border-red-650"
           >
             Fale Conosco Agora
           </a>

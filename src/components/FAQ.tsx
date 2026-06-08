@@ -10,9 +10,7 @@ export default function FAQ() {
     setOpenId(openId === id ? null : id);
   };
 
-  const handleWhatsAppFAQ = () => {
-    window.open('https://wa.me/5531988254981?text=Olá,%20tenho%2520uma%20dúvida%20sobre%20as%20peças.', '_blank');
-  };
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20tenho%20uma%20dúvida%20sobre%20as%20peças.';
 
   return (
     <section id="faq" className="py-20 md:py-28 bg-white border-b border-stone-150 relative">
@@ -79,14 +77,16 @@ export default function FAQ() {
           <p className="text-sm text-stone-700 font-bold uppercase">
             Não encontrou a resposta específica que procurava?
           </p>
-          <button
-            onClick={handleWhatsAppFAQ}
+          <a
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             id="faq-fallback-whatsapp-btn"
             className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm px-5 py-3 rounded-sm shadow-md hover:shadow-emerald-950/10 cursor-pointer transition-colors uppercase italic tracking-wider"
           >
             <WhatsAppIcon className="h-4 w-4" />
             Tirar Dúvida no WhatsApp
-          </button>
+          </a>
         </div>
 
       </div>

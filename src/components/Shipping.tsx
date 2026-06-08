@@ -4,9 +4,7 @@ import WhatsAppIcon from './WhatsAppIcon';
 import { getImageUrl } from '../utils/imageStore';
 
 export default function Shipping() {
-  const handleWhatsAppShipping = () => {
-    window.open('https://wa.me/5531988254981?text=Olá,%20gostaria%20de%20cotar%20o%20envio%20de%20uma%20peça.', '_blank');
-  };
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20cotar%20o%20envio%20de%20uma%20peça.';
 
   const shippingInfo = [
     {
@@ -94,15 +92,17 @@ export default function Shipping() {
             </div>
 
             <div className="pt-2">
-              <button
-                onClick={handleWhatsAppShipping}
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 id="shipping-whatsapp-cta-btn"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-8 py-4 rounded-sm shadow-lg hover:shadow-emerald-900/15 transition-all cursor-pointer uppercase italic tracking-wider border-b-2 border-white/20"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 Simular Frete no WhatsApp
                 <ArrowRight className="h-4 w-4" />
-              </button>
+              </a>
               <p className="text-stone-500 text-[11px] mt-2 text-left">
                 *Cotações de frete geradas com tarifas especiais de faturamento compartilhado.
               </p>

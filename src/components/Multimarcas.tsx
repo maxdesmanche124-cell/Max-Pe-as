@@ -11,10 +11,10 @@ export default function Multimarcas() {
   // Or fall back to static list if none found
   const multimarcaImages = savedImages.filter(img => img.category === 'multimarca');
 
-  const handleBrandConsult = (brandName: string) => {
+  const getBrandConsultUrl = (brandName: string) => {
     const text = `Olá! Gostaria de consultar a disponibilidade de peças para veículos da marca ${brandName}.`;
     const encoded = encodeURIComponent(text);
-    window.open(`https://wa.me/5531988254981?text=${encoded}`, '_blank');
+    return `https://wa.me/558000003728?text=${encoded}`;
   };
 
   return (
@@ -59,14 +59,16 @@ export default function Multimarcas() {
 
                 {/* Micro Actions Area */}
                 <div className="p-4 bg-white">
-                  <button
-                    onClick={() => handleBrandConsult(brandName)}
+                  <a
+                    href={getBrandConsultUrl(brandName)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     id={`btn-consult-brand-${brand.id}`}
-                    className="w-full flex items-center justify-center gap-1.5 bg-stone-950 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-3 rounded-sm tracking-wider uppercase italic transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-center gap-1.5 bg-stone-950 hover:bg-emerald-600 text-white font-bold text-xs py-2.5 px-3 rounded-sm tracking-wider uppercase italic transition-colors cursor-pointer text-center"
                   >
                     <WhatsAppIcon className="h-3.5 w-3.5" />
                     Consultar Peça
-                  </button>
+                  </a>
                 </div>
               </div>
             );

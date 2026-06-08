@@ -5,9 +5,7 @@ import heroBg from '../assets/images/maxpecas_hero_bg_1780923020621.png';
 import WhatsAppIcon from './WhatsAppIcon';
 
 export default function Hero() {
-  const handleWhatsAppQuote = () => {
-    window.open('https://wa.me/5531988254981?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento%20de%20peças.', '_blank');
-  };
+  const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento%20de%20peças.';
 
   return (
     <section
@@ -84,14 +82,16 @@ export default function Hero() {
 
             {/* Call To Actions */}
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-              <button
-                onClick={handleWhatsAppQuote}
+              <a
+                href={whatsAppUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 id="hero-cta-whatsapp-pulse"
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-950/20 hover:shadow-emerald-950/45 transform hover:-translate-y-1 transition-all animate-pulse-green cursor-pointer"
               >
                 <WhatsAppIcon className="h-5 w-5 animate-bounce" />
                 Solicitar Orçamento no WhatsApp
-              </button>
+              </a>
               <a
                 href="#categorias"
                 id="hero-cta-explore"
@@ -161,7 +161,7 @@ export default function Hero() {
                 <div className="bg-stone-950/80 p-4 rounded-xl text-center space-y-1.5 border border-stone-850">
                   <p className="text-xs text-stone-400">Canal Exclusivo para Orçamentos:</p>
                   <p className="text-lg font-mono font-bold text-white tracking-widest">
-                    (31) 98825-4981
+                    0800 000 3728
                   </p>
                 </div>
               </div>
