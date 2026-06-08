@@ -42,30 +42,42 @@ export default function App() {
     };
   }, []);
 
-  // Monitor url path /paineladmin or hash #paineladmin to trigger the Admin Panel direct entry
+  // Monitor url path /paineladmin or hash #paineladmin or search ?paineladmin to trigger the Admin Panel direct entry
   useEffect(() => {
     const handleUrlCheck = () => {
       const pathname = window.location.pathname;
       const hash = window.location.hash;
-      if (pathname === '/paineladmin' || pathname === '/paineladmin/' || hash === '#paineladmin') {
+      const search = window.location.search;
+      if (
+        pathname === '/paineladmin' || 
+        pathname === '/paineladmin/' || 
+        hash === '#paineladmin' || 
+        search.includes('paineladmin')
+      ) {
         setIsAdminOpen(true);
       }
     };
 
     handleUrlCheck();
     window.addEventListener('popstate', handleUrlCheck);
+    // Periodically inspect as popstate does not fire on manual hash changes in some settings
+    const interval = setInterval(handleUrlCheck, 1000);
     return () => {
       window.removeEventListener('popstate', handleUrlCheck);
+      clearInterval(interval);
     };
   }, []);
 
   const handleCloseAdmin = () => {
     setIsAdminOpen(false);
     // Return path to default / to keep browsing experience seamless
-    if (window.location.pathname === '/paineladmin' || window.location.pathname === '/paineladmin/') {
+    if (
+      window.location.pathname === '/paineladmin' || 
+      window.location.pathname === '/paineladmin/' ||
+      window.location.search.includes('paineladmin') ||
+      window.location.hash === '#paineladmin'
+    ) {
       window.history.pushState({}, '', '/');
-    } else if (window.location.hash === '#paineladmin') {
-      window.history.pushState({}, '', window.location.pathname);
     }
   };
 

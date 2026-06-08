@@ -224,6 +224,18 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
     { value: 'general', label: 'Imagens Gerais' }
   ];
 
+  // Metadata mappings for each tab section
+  const tabMetas: Record<string, { title: string; desc: string; icon: string }> = {
+    all: { title: 'Todas as Seções', desc: 'Exibe todo o acervo de imagens do site de uma só vez', icon: '📁' },
+    banner: { title: 'Banner Principal', desc: 'Plano de fundo gigante e fotos da seção superior principal', icon: '🖼️' },
+    category: { title: 'Categorias de Peças', desc: 'As fotos de autopeças exibidas na grade redonda de departamentos', icon: '⚙️' },
+    multimarca: { title: 'Multimarcas', desc: 'Fotos e logotipos das fabricantes de reposição (Chevrolet, Fiat, Jeep, etc.)', icon: '🚘' },
+    diferencial: { title: 'Diferenciais', desc: 'Fotos internas da seção de Credenciamento e Peças Originais', icon: '👑' },
+    institutional: { title: 'Institucional', desc: 'Fotos utilizadas na seção "Sobre Nós" e "Envio para Todo o Brasil"', icon: '🏢' },
+    reviews: { title: 'Avaliações de Clientes', desc: 'Avatares de compradores reais exibidos no carrossel de depoimentos', icon: '⭐' },
+    general: { title: 'Imagens Gerais', desc: 'Fotos gerais de fachada da loja física, mapa estático ou favicons extras', icon: '📦' }
+  };
+
   const filteredImages = filterCategory === 'all' 
     ? images 
     : images.filter(img => img.category === filterCategory);
@@ -253,7 +265,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
         {/* Auth Page */}
         {!isAuthenticated ? (
-          <div className="p-8 md:p-12 max-w-md mx-auto w-full my-auto space-y-6 animate-fade-in">
+          <div className="p-6 md:p-10 max-w-md mx-auto w-full my-auto space-y-5 overflow-y-auto max-h-[80vh] animate-fade-in">
             <div className="text-center space-y-2">
               <div className="h-12 w-12 bg-emerald-600/10 border border-emerald-500/20 text-emerald-500 rounded-sm flex items-center justify-center mx-auto">
                 <Lock className="h-6 w-6" />
@@ -264,6 +276,20 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
               <p className="text-stone-400 text-xs leading-relaxed">
                 Insira as credenciais do gerente para habilitar o gerenciamento na nuvem do Supabase Storage.
               </p>
+            </div>
+
+            {/* Dynamic Helpful URL instructions block */}
+            <div className="bg-[#121314] border border-stone-850 p-3 rounded-sm space-y-2 text-left">
+              <span className="text-[10px] font-mono font-bold text-emerald-500 block uppercase">
+                💡 Dica de Acesso Rápido no Netlify:
+              </span>
+              <p className="text-[10.5px] text-stone-450 leading-relaxed">
+                Como o site é uma SPA, se você digitar diretamente <code className="text-white font-mono bg-stone-900 px-1 py-0.5 rounded">/paineladmin</code> e der erro, acesse usando uma destas URLs alternativas que abrem instantaneamente:
+              </p>
+              <ul className="text-[10px] font-mono text-stone-300 space-y-1 list-disc list-inside">
+                <li><span className="text-[9px] text-emerald-400">Recomendado:</span> <span className="text-white">/?paineladmin</span></li>
+                <li><span className="text-[9px] text-emerald-400">Opção 2:</span> <span className="text-white">/#paineladmin</span></li>
+              </ul>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-4 text-left">
@@ -451,10 +477,10 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
             {/* Main Manager section */}
             <div className="flex-1 p-6 flex flex-col justify-between overflow-hidden text-left">
-              <div className="space-y-6 flex-1 flex flex-col overflow-hidden">
+              <div className="space-y-4 flex-1 flex flex-col overflow-hidden">
                 
                 {/* Connection Status Header Bar */}
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-stone-850 pb-4">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 border-b border-stone-850 pb-3">
                   <div>
                     <h3 className="font-display font-black text-lg text-white uppercase italic tracking-tight">
                       Mídias em Nuvem (Supabase)
@@ -491,34 +517,69 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
                 {/* Migration status logging */}
                 {isMigrating && (
-                  <div className="bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 px-4 py-3 rounded-sm text-xs font-mono font-bold flex items-center gap-2 animate-pulse">
+                  <div className="bg-emerald-950/20 border border-emerald-500/30 text-emerald-300 px-4 py-3 rounded-sm text-xs font-mono font-bold flex items-center gap-2 animate-pulse mb-1">
                     <RefreshCw className="h-3.5 w-3.5 animate-spin text-emerald-500" />
                     <span>Migração em andamento: {migrationProgress}</span>
                   </div>
                 )}
 
-                {/* Filter & categorization selector */}
-                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 bg-stone-900 border border-stone-850 p-3 rounded-sm">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-mono font-bold text-stone-500 uppercase">Seção de Filtro:</span>
-                    <select
-                      value={filterCategory}
-                      onChange={(e) => setFilterCategory(e.target.value)}
-                      className="bg-stone-950 border border-stone-800 text-white rounded px-3 py-1.5 text-xs focus:border-emerald-600 focus:outline-none focus:ring-0 uppercase text-left"
-                    >
-                      {categoriesList.map(opt => (
-                        <option key={opt.value} value={opt.value}>{opt.label}</option>
-                      ))}
-                    </select>
+                {/* Filter & categorization selector reconstructed to visual section tabs */}
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-mono font-bold text-stone-500 uppercase tracking-widest">Navegar por Seção (Abas):</span>
+                    <span className="text-[11px] text-stone-400 font-mono">
+                      Mostrando <span className="font-bold text-white bg-stone-900 px-1.5 py-0.5 rounded border border-stone-800">{filteredImages.length}</span> imagens
+                    </span>
                   </div>
-                  <div className="text-[11px] text-stone-400">
-                    Exibindo <span className="font-bold text-white font-mono">{filteredImages.length}</span> imagens filtradas
+                  
+                  {/* Grid layout of Section Switcher Tabs */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+                    {categoriesList.map((opt) => {
+                      const isActive = filterCategory === opt.value;
+                      const count = opt.value === 'all' 
+                        ? images.length 
+                        : images.filter(img => img.category === opt.value).length;
+                      const config = tabMetas[opt.value];
+                      const icon = config?.icon || '📁';
+                      
+                      return (
+                        <button
+                          key={opt.value}
+                          type="button"
+                          onClick={() => setFilterCategory(opt.value)}
+                          className={`flex flex-col items-center justify-center p-2 rounded-sm border transition text-center cursor-pointer ${
+                            isActive 
+                              ? 'bg-emerald-600/15 border-emerald-550 text-white font-bold shadow-lg shadow-emerald-950/20 scale-[1.02]' 
+                              : 'bg-[#151618] border-stone-850 text-stone-400 hover:border-stone-700 hover:text-white'
+                          }`}
+                        >
+                          <span className="text-lg mb-0.5">{icon}</span>
+                          <span className="text-[9.5px] uppercase tracking-wider block font-bold leading-tight truncate w-full">
+                            {opt.label.replace('Categorias de ', '').replace('Imagens ', '')}
+                          </span>
+                          <span className="text-[9px] font-mono mt-1 px-1.5 py-0.2 font-black rounded-sm bg-stone-950 text-stone-400">
+                            {count}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Active Tab Explanation block */}
+                  <div className="bg-[#151618] border border-stone-850 p-2.5 rounded-sm flex items-center justify-between text-xs text-stone-300">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base">{tabMetas[filterCategory]?.icon}</span>
+                      <p className="text-[11px] leading-relaxed">
+                        <strong className="text-emerald-400 uppercase font-black mr-1">{tabMetas[filterCategory]?.title}:</strong>
+                        <span className="text-stone-400">{tabMetas[filterCategory]?.desc}</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Status messages banner */}
                 {successMsg && (
-                  <div className="bg-emerald-650/15 border border-emerald-500/20 text-emerald-400 p-2.5 rounded-sm text-xs font-bold text-center">
+                  <div className="bg-emerald-650/15 border border-emerald-500/20 text-emerald-400 p-2 text-xs font-bold text-center">
                     📢 {successMsg}
                   </div>
                 )}
