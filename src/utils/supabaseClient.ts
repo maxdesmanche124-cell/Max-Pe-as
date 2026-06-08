@@ -1,8 +1,24 @@
 import { createClient } from '@supabase/supabase-js';
 
 // Environment variables checks
-const supabaseUrl = (import.meta as any).env?.VITE_SUPABASE_URL || '';
+const rawSupabaseUrl = (import.meta as any).env?.VITE_SUPABASE_URL || '';
 const supabaseAnonKey = (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || '';
+
+// Clean up the URL to guarantee compatibility if the user pasted full PostgREST endpoint
+export function cleanSupabaseUrl(url: string): string {
+  let cleaned = url.trim();
+  if (cleaned.endsWith('/rest/v1/')) {
+    cleaned = cleaned.slice(0, -'/rest/v1/'.length);
+  } else if (cleaned.endsWith('/rest/v1')) {
+    cleaned = cleaned.slice(0, -'/rest/v1'.length);
+  }
+  if (cleaned.endsWith('/')) {
+    cleaned = cleaned.slice(0, -1);
+  }
+  return cleaned;
+}
+
+const supabaseUrl = cleanSupabaseUrl(rawSupabaseUrl);
 
 // Lazy initialization check
 export function isSupabaseConfigured(): boolean {

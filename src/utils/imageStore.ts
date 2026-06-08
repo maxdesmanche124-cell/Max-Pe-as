@@ -146,13 +146,13 @@ export async function saveMetadataToSupabase(imagesList: SiteImage[]): Promise<b
     
     const { error } = await supabase.storage
       .from('site-images')
-      .upload('site-images-metadata.json', blob, {
+      .upload('uploads/site-images-metadata.json', blob, {
         upsert: true,
         contentType: 'application/json',
       });
       
     if (error) {
-      console.error('Failed to upload site-images-metadata.json:', error.message);
+      console.error('Failed to upload uploads/site-images-metadata.json:', error.message);
       return false;
     }
     return true;
@@ -169,11 +169,11 @@ export async function syncImagesWithSupabase(): Promise<SiteImage[] | null> {
     await ensureBucketExists();
     const { data, error } = await supabase.storage
       .from('site-images')
-      .download('site-images-metadata.json');
+      .download('uploads/site-images-metadata.json');
 
     if (error) {
       // If metadata not found, create and seed it
-      console.log('site-images-metadata.json not found. Initializing and migrating default state...');
+      console.log('uploads/site-images-metadata.json not found. Initializing and migrating default state...');
       await saveMetadataToSupabase(getSavedImages());
       return getSavedImages();
     }
