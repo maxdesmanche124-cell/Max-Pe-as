@@ -1,0 +1,6 @@
+{
+  "name": "MAXPEÇAS - Auto Peças de Alta Performance",
+  "description": "Comercialização de peças automotivas novas e seminovas com procedência, garantia e nota fiscal. Solicite seu orçamento via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
