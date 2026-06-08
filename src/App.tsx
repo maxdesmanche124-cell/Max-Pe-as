@@ -15,10 +15,32 @@ import WhatsAppFloating from './components/WhatsAppFloating';
 import ComplianceModals from './components/ComplianceModals';
 import AdminPanel from './components/AdminPanel';
 import { ComplianceDocType } from './types';
+import { syncImagesWithSupabase } from './utils/imageStore';
 
 export default function App() {
   const [activeDoc, setActiveDoc] = useState<ComplianceDocType>(null);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
+  const [imagesVersion, setImagesVersion] = useState(0);
+
+  // Synchronize site images with Supabase Storage bucket
+  useEffect(() => {
+    // 1. Download database JSON registry to sync images
+    syncImagesWithSupabase().then((refreshedList) => {
+      if (refreshedList) {
+        setImagesVersion((v) => v + 1);
+      }
+    });
+
+    // 2. Refresh immediately when another component issues maxpecas_images_updated
+    const handleSyncUpdate = (e: Event) => {
+      setImagesVersion((v) => v + 1);
+    };
+
+    window.addEventListener('maxpecas_images_updated', handleSyncUpdate);
+    return () => {
+      window.removeEventListener('maxpecas_images_updated', handleSyncUpdate);
+    };
+  }, []);
 
   // Monitor url path /paineladmin or hash #paineladmin to trigger the Admin Panel direct entry
   useEffect(() => {
@@ -77,22 +99,22 @@ export default function App() {
       {/* Main Content Layout sections */}
       <main id="app-main-sections">
         {/* 1. Hero Section */}
-        <Hero />
+        <Hero key={`hero-${imagesVersion}`} />
 
         {/* 2. Sobre a Empresa */}
-        <About />
+        <About key={`about-${imagesVersion}`} />
 
         {/* 3. Categorias de Peças */}
-        <Categories />
+        <Categories key={`categories-${imagesVersion}`} />
 
         {/* 3.5 Trabalhamos com Peças de Multimarcas */}
-        <Multimarcas />
+        <Multimarcas key={`multimarcas-${imagesVersion}`} />
 
         {/* 4. Diferenciais */}
-        <Features />
+        <Features key={`features-${imagesVersion}`} />
 
         {/* 4.5 Enviamos para Todo o Brasil */}
-        <Shipping />
+        <Shipping key={`shipping-${imagesVersion}`} />
 
         {/* 5. Processo de Atendimento */}
         <HowItWorks />
