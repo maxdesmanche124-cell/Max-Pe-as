@@ -31,7 +31,7 @@ export default function Features() {
             <ShieldAlert className="h-3.5 w-3.5 text-red-500 animate-pulse" /> COMPROMISSO E TRANSPARÊNCIA
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-extrabold text-stone-950 italic uppercase tracking-tighter">
-            Por que escolher a <span className="text-red-600">MAXPEÇAS</span>?
+            Por que escolher a <span className="text-red-600">MAX PEÇAS</span>?
           </h2>
           <div className="h-1 w-20 bg-red-650 mx-auto" />
           <p className="text-stone-600 text-sm md:text-base leading-relaxed">

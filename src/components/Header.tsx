@@ -4,9 +4,11 @@ import WhatsAppIcon from './WhatsAppIcon';
 
 interface HeaderProps {
   onOpenDoc: (doc: 'privacidade' | 'termos' | 'garantia' | 'troca') => void;
+  onNavigate?: (path: string) => void;
+  currentPath?: string;
 }
 
-export default function Header({ onOpenDoc }: HeaderProps) {
+export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -47,9 +49,19 @@ export default function Header({ onOpenDoc }: HeaderProps) {
         <div className="flex items-center justify-between">
           
           {/* Logo Brand - Sleek Skewed Design */}
-          <a href="#" className="flex items-center gap-3 group" id="brand-logo-link">
+          <a
+            href="/"
+            onClick={(e) => {
+              if (onNavigate) {
+                e.preventDefault();
+                onNavigate('/');
+              }
+            }}
+            className="flex items-center gap-3 group"
+            id="brand-logo-link"
+          >
             <div className="bg-red-650 px-3.5 py-1.5 font-display font-black text-xl text-white italic skew-x-[-10deg] tracking-tight group-hover:scale-102 transition-transform duration-250">
-              MAXPEÇAS
+              MAX PEÇAS
             </div>
             <div className="hidden md:flex flex-col">
               <span className="text-[10px] font-mono font-bold text-stone-300 tracking-[0.15em] uppercase">
@@ -67,6 +79,15 @@ export default function Header({ onOpenDoc }: HeaderProps) {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => {
+                  if (onNavigate && currentPath !== '/') {
+                    e.preventDefault();
+                    onNavigate('/');
+                    setTimeout(() => {
+                      window.location.hash = link.href;
+                    }, 100);
+                  }
+                }}
                 className="text-sm font-medium text-stone-300 hover:text-white px-3 py-2 rounded-md transition-colors"
               >
                 {link.name}
@@ -129,7 +150,16 @@ export default function Header({ onOpenDoc }: HeaderProps) {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={() => setIsOpen(false)}
+                onClick={(e) => {
+                  setIsOpen(false);
+                  if (onNavigate && currentPath !== '/') {
+                    e.preventDefault();
+                    onNavigate('/');
+                    setTimeout(() => {
+                      window.location.hash = link.href;
+                    }, 100);
+                  }
+                }}
                 className="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-900 px-3 py-2.5 rounded-md transition-all border-b border-stone-900 last:border-0"
               >
                 {link.name}
@@ -145,27 +175,48 @@ export default function Header({ onOpenDoc }: HeaderProps) {
                 className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-4 rounded-xl shadow-lg transition-all text-center cursor-pointer text-base"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                Falar no WhatsApp (Grátis)
+                Falar no WhatsApp
               </a>
               <div className="flex justify-around text-xs text-stone-400 pt-2 border-t border-stone-900">
-                <button 
-                  onClick={() => { setIsOpen(false); onOpenDoc('garantia'); }}
+                <a 
+                  href="/trocas-garantia-procedencia"
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/trocas-garantia-procedencia');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer active:text-red-500"
                 >
-                  Garantia
-                </button>
-                <button 
-                  onClick={() => { setIsOpen(false); onOpenDoc('troca'); }}
-                  className="hover:text-white cursor-pointer active:text-red-500"
-                >
-                  Trocas
-                </button>
-                <button 
-                  onClick={() => { setIsOpen(false); onOpenDoc('privacidade'); }}
+                  Garantia e Trocas
+                </a>
+                <a 
+                  href="/politica-de-privacidade"
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/politica-de-privacidade');
+                    }
+                  }}
                   className="hover:text-white cursor-pointer active:text-red-500"
                 >
                   Privacidade
-                </button>
+                </a>
+                <a 
+                  href="/termos-de-uso"
+                  onClick={(e) => {
+                    setIsOpen(false);
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/termos-de-uso');
+                    }
+                  }}
+                  className="hover:text-white cursor-pointer active:text-red-500"
+                >
+                  Termos
+                </a>
               </div>
             </div>
           </div>

@@ -14,7 +14,7 @@ export default function Shipping() {
     },
     {
       title: 'Transporte Seguro',
-      description: 'Utilizamos engradados protetores e embalagens de alta cubagem com seguro total contra roubo ou sinistro na rota.',
+      description: 'Utilizamos embalagens adequadas e protetoras para transporte seguro conforme condições e região.',
       icon: <ShieldCheck className="h-5 w-5 text-red-650" />
     },
     {
@@ -40,7 +40,7 @@ export default function Shipping() {
             </div>
             
             <h2 className="text-3xl md:text-5xl font-display font-extrabold uppercase italic tracking-tighter text-white">
-              Logística Ágil & <span className="text-red-500">Entrega Garantida</span>
+              Logística Ágil & <span className="text-red-500">Envio para Diversas Regiões</span>
             </h2>
             
             <div className="h-1 w-20 bg-red-600" />

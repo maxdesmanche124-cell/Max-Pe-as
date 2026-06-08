@@ -4,9 +4,10 @@ import { ComplianceDocType } from '../types';
 
 interface FooterProps {
   onOpenDoc: (doc: 'privacidade' | 'termos' | 'garantia' | 'troca') => void;
+  onNavigate?: (path: string) => void;
 }
 
-export default function Footer({ onOpenDoc }: FooterProps) {
+export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -18,9 +19,18 @@ export default function Footer({ onOpenDoc }: FooterProps) {
           {/* Column 1 - Brand Summary */}
           <div className="space-y-4 text-left">
             <div className="flex items-center gap-2">
-              <div className="bg-red-600 px-3 py-1 font-display font-black text-xl text-white italic skew-x-[-10deg] tracking-tight">
-                MAXPEÇAS
-              </div>
+              <a
+                href="/"
+                onClick={(e) => {
+                  if (onNavigate) {
+                    e.preventDefault();
+                    onNavigate('/');
+                  }
+                }}
+                className="bg-red-600 px-3 py-1 font-display font-black text-xl text-white italic skew-x-[-10deg] tracking-tight hover:scale-102 transition-transform"
+              >
+                MAX PEÇAS
+              </a>
             </div>
             
             <p className="text-xs md:text-sm leading-relaxed text-stone-400">
@@ -40,16 +50,28 @@ export default function Footer({ onOpenDoc }: FooterProps) {
             </h3>
             <ul className="space-y-2 text-sm">
               {[
-                { name: 'Sobre Nós', href: '#sobre' },
-                { name: 'Categorias de Peças', href: '#categorias' },
-                { name: 'Nossos Diferenciais', href: '#diferenciais' },
-                { name: 'Processo de Atendimento', href: '#como-funciona' },
-                { name: 'Avaliações dos Clientes', href: '#depoimentos' },
-                { name: 'Dúvidas Frequentes (FAQ)', href: '#faq' },
-                { name: 'Localização Física', href: '#localizacao' }
+                { name: 'Sobre Nós', href: '#sobre', path: '/' },
+                { name: 'Categorias de Peças', href: '#categorias', path: '/' },
+                { name: 'Nossos Diferenciais', href: '#diferenciais', path: '/' },
+                { name: 'Processo de Atendimento', href: '#como-funciona', path: '/' },
+                { name: 'Avaliações dos Clientes', href: '#depoimentos', path: '/' },
+                { name: 'Dúvidas Frequentes (FAQ)', href: '#faq', path: '/' },
+                { name: 'Localização Física', href: '#localizacao', path: '/' }
               ].map((link) => (
                 <li key={link.name}>
-                  <a href={link.href} className="hover:text-white flex items-center gap-1.5 transition-colors">
+                  <a
+                    href={link.href}
+                    onClick={(e) => {
+                      if (onNavigate && window.location.pathname !== link.path) {
+                        e.preventDefault();
+                        onNavigate(link.path);
+                        setTimeout(() => {
+                          window.location.hash = link.href;
+                        }, 100);
+                      }
+                    }}
+                    className="hover:text-white flex items-center gap-1.5 transition-colors"
+                  >
                     <ChevronRight className="h-3 w-3 text-red-500" />
                     {link.name}
                   </a>
@@ -65,40 +87,49 @@ export default function Footer({ onOpenDoc }: FooterProps) {
             </h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <button
-                  onClick={() => onOpenDoc('privacidade')}
+                <a
+                  href="/politica-de-privacidade"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/politica-de-privacidade');
+                    }
+                  }}
                   className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
                 >
                   <FileText className="h-3.5 w-3.5 text-red-500" />
-                  Política de Privacidade (LGPD)
-                </button>
+                  Política de Privacidade
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onOpenDoc('termos')}
+                <a
+                  href="/termos-de-uso"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/termos-de-uso');
+                    }
+                  }}
                   className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
                 >
                   <FileText className="h-3.5 w-3.5 text-red-500" />
-                  Termos e Condições de Uso
-                </button>
+                  Termos de Uso
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => onOpenDoc('garantia')}
+                <a
+                  href="/trocas-garantia-procedencia"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/trocas-garantia-procedencia');
+                    }
+                  }}
                   className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
                 >
                   <FileText className="h-3.5 w-3.5 text-red-500" />
-                  Política de Garantia de 90 Dias
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => onOpenDoc('troca')}
-                  className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
-                >
-                  <FileText className="h-3.5 w-3.5 text-red-500" />
-                  Política de Trocas e Devoluções
-                </button>
+                  Trocas, Garantia e Procedência
+                </a>
               </li>
             </ul>
 
@@ -168,7 +199,7 @@ export default function Footer({ onOpenDoc }: FooterProps) {
           </div>
 
           <p className="text-center">
-            &copy; {currentYear} MAXPEÇAS - AUTO PECAS MAX LTDA. Todos os direitos reservados. É proibida a reprodução total ou parcial das mídias digitais sem autorização prévia por escrito.
+            &copy; {currentYear} MAX PEÇAS - AUTO PECAS MAX LTDA. Todos os direitos reservados. É proibida a reprodução total ou parcial das mídias digitais sem autorização prévia por escrito.
           </p>
 
         </div>

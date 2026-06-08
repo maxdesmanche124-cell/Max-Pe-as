@@ -39,18 +39,18 @@ export default function Hero() {
                 Desde 1995 em Belo Horizonte
               </span>
               <span className="text-xs font-mono font-bold text-stone-400 tracking-wider uppercase hidden sm:inline-block">
-                • Procedência Garantida
+                • Procedência Informada
               </span>
             </div>
 
             {/* Main Catchy Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white italic uppercase tracking-tighter leading-[0.95]" id="hero-main-title">
-              Peças com <span className="text-red-500">Procedência</span> <br className="hidden md:block"/>& Garantia Real
+              Peças automotivas usadas e seminovas com atendimento especializado
             </h1>
 
             {/* Realistic Bullet Substantiation without false promises */}
             <p className="text-base sm:text-lg text-stone-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
-              Na <strong className="text-white">MAXPEÇAS (AUTO PECAS MAX LTDA)</strong>, comercializamos motores, câmbios, latarias e suspensões com nota fiscal e garantia de 90 dias por escrito. Desde 1995 fornecendo segurança certificada para proprietários, oficinas mecânicas e frotistas em todo o Brasil.
+              Consulte motores, câmbios, módulos, latarias, faróis, lanternas, rodas, suspensão e outras autopeças conforme disponibilidade em estoque. Atendimento para orçamento e consulta de compatibilidade.
             </p>
 
             {/* Horizontal trust parameters badge-group */}
@@ -59,7 +59,7 @@ export default function Hero() {
                 <FileText className="h-5 w-5 text-red-500 flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-xs text-stone-400 font-mono">SEGURANÇA</p>
-                  <p className="text-sm font-semibold text-white">100% com Nota Fiscal</p>
+                  <p className="text-sm font-semibold text-white">Emissão de Nota Fiscal</p>
                 </div>
               </div>
 
@@ -67,7 +67,7 @@ export default function Hero() {
                 <ShieldCheck className="h-5 w-5 text-red-500 flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-xs text-stone-400 font-mono">SUPORTE</p>
-                  <p className="text-sm font-semibold text-white">Garantia por Escrito</p>
+                  <p className="text-sm font-semibold text-white">Garantia Informada</p>
                 </div>
               </div>
 
@@ -90,7 +90,7 @@ export default function Hero() {
                 className="w-full sm:w-auto flex items-center justify-center gap-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base px-8 py-4 rounded-xl shadow-lg shadow-emerald-950/20 hover:shadow-emerald-950/45 transform hover:-translate-y-1 transition-all animate-pulse-green cursor-pointer"
               >
                 <WhatsAppIcon className="h-5 w-5 animate-bounce" />
-                Solicitar Orçamento no WhatsApp
+                Consultar Disponibilidade
               </a>
               <a
                 href="#categorias"
@@ -104,7 +104,7 @@ export default function Hero() {
             {/* Google Ads Compliance Mini Tag */}
             <p className="text-[10px] sm:text-xs text-stone-500 flex items-center justify-center lg:justify-start gap-1">
               <Scale className="h-3 w-3 text-red-600" />
-              Consulte disponibilidade de peças com nossos técnicos de plantão no WhatsApp.
+              Consulte disponibilidade de peças com nossa equipe de atendimento no WhatsApp.
             </p>
 
           </div>

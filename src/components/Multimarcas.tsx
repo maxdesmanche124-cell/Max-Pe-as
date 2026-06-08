@@ -76,9 +76,14 @@ export default function Multimarcas() {
         </div>
 
         {/* Micro Guarantee Note */}
-        <p className="text-center text-stone-500 text-xs mt-8">
-          Temos também peças para carros de frotas executivas e utilitários. Consulte-nos sobre outras montadoras.
-        </p>
+        <div className="mt-12 bg-stone-50 border border-stone-200 rounded-lg p-6 max-w-4xl mx-auto space-y-3">
+          <p className="text-center text-xs text-stone-500 font-medium">
+            Temos peças para carros de diversas frotas e utilitários. Consulte nossa equipe sobre outras montadoras e disponibilidade em estoque.
+          </p>
+          <p className="text-center text-[11px] text-stone-400 leading-relaxed font-sans max-w-3xl mx-auto">
+            Trabalhamos com peças usadas e seminovas compatíveis com veículos de diversas marcas. A MAX PEÇAS não é concessionária, representante oficial ou assistência autorizada das marcas exibidas. As marcas pertencem aos seus respectivos proprietários e são citadas apenas para indicar compatibilidade de peças.
+          </p>
+        </div>
 
       </div>
     </section>

@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import WhatsAppFloating from './components/WhatsAppFloating';
 import ComplianceModals from './components/ComplianceModals';
 import AdminPanel from './components/AdminPanel';
+import LegalPage from './components/LegalPage';
 import { ComplianceDocType } from './types';
 import { syncImagesWithSupabase } from './utils/imageStore';
 
@@ -21,6 +22,7 @@ export default function App() {
   const [activeDoc, setActiveDoc] = useState<ComplianceDocType>(null);
   const [isAdminOpen, setIsAdminOpen] = useState(false);
   const [imagesVersion, setImagesVersion] = useState(0);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   // Synchronize site images with Supabase Storage bucket
   useEffect(() => {
@@ -42,10 +44,12 @@ export default function App() {
     };
   }, []);
 
-  // Monitor url path /paineladmin or hash #paineladmin or search ?paineladmin to trigger the Admin Panel direct entry
+  // Monitor url path /paineladmin or standard routing paths
   useEffect(() => {
     const handleUrlCheck = () => {
       const pathname = window.location.pathname;
+      setCurrentPath(pathname);
+
       const hash = window.location.hash;
       const search = window.location.search;
       if (
@@ -61,7 +65,7 @@ export default function App() {
     handleUrlCheck();
     window.addEventListener('popstate', handleUrlCheck);
     // Periodically inspect as popstate does not fire on manual hash changes in some settings
-    const interval = setInterval(handleUrlCheck, 1000);
+    const interval = setInterval(handleUrlCheck, 500);
     return () => {
       window.removeEventListener('popstate', handleUrlCheck);
       clearInterval(interval);
@@ -78,7 +82,14 @@ export default function App() {
       window.location.hash === '#paineladmin'
     ) {
       window.history.pushState({}, '', '/');
+      setCurrentPath('/');
     }
+  };
+
+  const navigate = (path: string) => {
+    window.history.pushState({}, '', path);
+    setCurrentPath(path);
+    window.scrollTo(0, 0);
   };
 
   const handleOpenDoc = (doc: 'privacidade' | 'termos' | 'garantia' | 'troca') => {
@@ -97,6 +108,8 @@ export default function App() {
     }
   };
 
+  const isLegalPath = ['/politica-de-privacidade', '/termos-de-uso', '/trocas-garantia-procedencia'].includes(currentPath);
+
   return (
     <div className="relative min-h-screen bg-stone-50 select-text font-sans scroll-smooth" id="app-viewport-root">
       {/* Dynamic Overlay Compliance Policy Modals (Google Ads Check requirements) */}
@@ -106,43 +119,49 @@ export default function App() {
       <AdminPanel isOpen={isAdminOpen} onClose={handleCloseAdmin} />
 
       {/* Corporate Sticky Header navbar */}
-      <Header onOpenDoc={handleOpenDoc} />
+      <Header onOpenDoc={handleOpenDoc} onNavigate={navigate} currentPath={currentPath} />
 
-      {/* Main Content Layout sections */}
-      <main id="app-main-sections">
-        {/* 1. Hero Section */}
-        <Hero key={`hero-${imagesVersion}`} />
+      {/* Main Content Layout sections / Legal Page */}
+      {isLegalPath ? (
+        <main id="app-main-sections" className="pt-20">
+          <LegalPage path={currentPath} onNavigate={navigate} />
+        </main>
+      ) : (
+        <main id="app-main-sections">
+          {/* 1. Hero Section */}
+          <Hero key={`hero-${imagesVersion}`} />
 
-        {/* 1.5 Trabalhamos com Peças de Multimarcas (Movida para baixo do Hero) */}
-        <Multimarcas key={`multimarcas-${imagesVersion}`} />
+          {/* 1.5 Trabalhamos com Peças de Multimarcas (Movida para baixo do Hero) */}
+          <Multimarcas key={`multimarcas-${imagesVersion}`} />
 
-        {/* 2. Sobre a Empresa */}
-        <About key={`about-${imagesVersion}`} />
+          {/* 2. Sobre a Empresa */}
+          <About key={`about-${imagesVersion}`} />
 
-        {/* 3. Categorias de Peças */}
-        <Categories key={`categories-${imagesVersion}`} />
+          {/* 3. Categorias de Peças */}
+          <Categories key={`categories-${imagesVersion}`} />
 
-        {/* 4. Diferenciais */}
-        <Features key={`features-${imagesVersion}`} />
+          {/* 4. Diferenciais */}
+          <Features key={`features-${imagesVersion}`} />
 
-        {/* 4.5 Enviamos para Todo o Brasil */}
-        <Shipping key={`shipping-${imagesVersion}`} />
+          {/* 4.5 Enviamos para Todo o Brasil */}
+          <Shipping key={`shipping-${imagesVersion}`} />
 
-        {/* 5. Processo de Atendimento */}
-        <HowItWorks />
+          {/* 5. Processo de Atendimento */}
+          <HowItWorks />
 
-        {/* 6. Avaliações de Clientes */}
-        <Reviews />
+          {/* 6. Avaliações de Clientes */}
+          <Reviews />
 
-        {/* 7. FAQ */}
-        <FAQ />
+          {/* 7. FAQ */}
+          <FAQ />
 
-        {/* 8. Localização com Google Maps Pinpoint */}
-        <Location />
-      </main>
+          {/* 8. Localização com Google Maps Pinpoint */}
+          <Location />
+        </main>
+      )}
 
       {/* 9. Rodapé completo & Compliance info block */}
-      <Footer onOpenDoc={handleOpenDoc} />
+      <Footer onOpenDoc={handleOpenDoc} onNavigate={navigate} />
 
       {/* Conversion Booster: WhatsApp Floating Widget with pulse dynamics */}
       <WhatsAppFloating />
