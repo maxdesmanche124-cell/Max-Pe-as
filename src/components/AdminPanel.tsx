@@ -134,19 +134,31 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
     }
 
     setIsReplacing(true);
+    console.log(`[AdminPanel] Iniciando substituição de mídia para o ID "${id}" com o arquivo "${file.name}"...`);
     try {
       const { uploadToStorage } = await import('../utils/supabaseClient');
       const cleanFilename = `uploads/replace-${id}-${Date.now()}-${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+      
+      console.log(`[AdminPanel] Fazendo upload do novo arquivo para o bucket "site-images" no caminho "${cleanFilename}"...`);
       const publicUrl = await uploadToStorage(cleanFilename, file, file.type);
+      
       if (publicUrl) {
-        setEditingUrl(publicUrl);
-        showFeedback('Substituição enviada! Clique no botão "Gravar Link" para salvar as alterações.');
+        console.log(`[AdminPanel] Upload bem sucedido! URL pública gerada: ${publicUrl}`);
+        console.log('[AdminPanel] Gravando e salvando a nova URL no estado e banco de dados do site...');
+        
+        // Save the generated publicUrl to localized storage / Supabase metadata bank
+        const updated = updateImageUrl(id, publicUrl);
+        setImages(updated);
+        setEditingId(null);
+        setEditingUrl('');
+        showFeedback('Substituição de imagem realizada e salva com sucesso!');
       } else {
-        alert('Falha no upload do arquivo de substituição.');
+        console.error(`[AdminPanel] Não foi possível obter a URL pública para "${cleanFilename}". O upload pode ter falhado devido a restrições de RLS (Row Level Security) ou bucket inexistente.`);
+        alert('Falha no upload do arquivo de substituição. O bucket pode não existir ou o RLS do Supabase bloqueou o upload por regras de segurança. Abra as ferramentas de desenvolvedor (F12) e veja o painel Console para instruções detalhadas de diagnóstico e correção!');
       }
     } catch (err: any) {
-      console.error(err);
-      alert('Erro inesperado no upload de substituição: ' + err.message);
+      console.error('[AdminPanel] Ocorreu um erro inesperado ao executar o upload do arquivo de substituição:', err);
+      alert('Erro inesperado no upload de substituição: ' + err.message + '\nConsulte o console para mais detalhes técnicos de diagnóstico.');
     } finally {
       setIsReplacing(false);
     }

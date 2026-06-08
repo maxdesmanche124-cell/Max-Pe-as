@@ -44,6 +44,11 @@ export async function ensureBucketExists(): Promise<boolean> {
     const { data: buckets, error } = await supabase.storage.listBuckets();
     if (error) {
       console.warn('Error listing buckets in Supabase:', error.message);
+      console.error(
+        `🚨 DIAGNÓSTICO DE INICIALIZAÇÃO DO BUCKET:\n` +
+        `Ao listar os buckets do Supabase, ocorreu o erro: "${error.message}". Código: ${error.name}.\n` +
+        `Geralmente isso ocorre se a API de Storage não está exposta no endpoint ou se o bucket "site-images" precisa ser criado manualmente através do painel do Supabase com o nome EXATO de "site-images" marcado como PÚBLICO.`
+      );
       return false;
     }
     const exists = buckets?.some((b) => b.name === 'site-images');
@@ -54,6 +59,11 @@ export async function ensureBucketExists(): Promise<boolean> {
       });
       if (createError) {
         console.warn('Failed to auto-create bucket "site-images":', createError.message);
+        console.error(
+          `🚨 ERRO AO CRIAR BUCKET AUTOMATICAMENTE:\n` +
+          `O cliente anônimo não possui permissão para criar buckets automáticos no seu projeto do Supabase.\n` +
+          `Por favor, acesse seu painel do Supabase (https://supabase.com), vá em Storage, clique em "New bucket", defina o nome como "site-images" (letras minúsculas) e marque a opção "Public bucket" como ATIVADA.`
+        );
         return false;
       }
     }
@@ -80,7 +90,19 @@ export async function uploadToStorage(
       });
 
     if (error) {
-      console.error(`Upload to storage path "${filePath}" failed:`, error.message);
+      console.error(`[SUPABASE ERROR] Falha no upload para o caminho "${filePath}":`, error.message, error);
+      console.error(
+        `🚨 INSTRUÇÕES DE DIAGNÓSTICO DO SUPABASE STORAGE:\n` +
+        `Para resolver o erro "${error.message}", certifique-se de que no seu painel do Supabase:\n` +
+        `1. O bucket "site-images" exista e seja do tipo PÚBLICO (Public).\n` +
+        `2. Você tenha configurado as políticas de RLS (Row Level Security) para habilitar uploads anônimos/públicos. No SQL Editor do Supabase, execute o seguinte comando:\n\n` +
+        `   -- 1. Permitir que qualquer pessoa acesse os arquivos públicos\n` +
+        `   CREATE POLICY "Acesso Publico de Leitura" ON storage.objects FOR SELECT USING (bucket_id = 'site-images');\n\n` +
+        `   -- 2. Permitir inserts/uploads na pasta 'uploads' ou no bucket 'site-images'\n` +
+        `   CREATE POLICY "Permitir Upload Publico" ON storage.objects FOR INSERT WITH CHECK (bucket_id = 'site-images');\n\n` +
+        `   -- 3. Permitir atualização rápida se necessário (upsert/update)\n` +
+        `   CREATE POLICY "Permitir Update Publico" ON storage.objects FOR UPDATE USING (bucket_id = 'site-images');\n`
+      );
       return null;
     }
 
