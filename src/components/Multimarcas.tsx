@@ -48,19 +48,13 @@ export default function Multimarcas() {
                 className="group relative bg-stone-50 border border-stone-150 rounded-lg overflow-hidden flex flex-col justify-between hover:border-red-600 hover:shadow-lg transition-all duration-300"
               >
                 {/* Brand Showcase Cover Image */}
-                <div className="h-36 w-full bg-stone-950 relative overflow-hidden">
+                <div className="h-36 w-full bg-stone-50 border-b border-stone-200 relative overflow-hidden flex items-center justify-center p-3">
                   <img
                     src={brand.url}
                     alt={`Modelos ${brandName}`}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-transparent to-transparent" />
-                  
-                  {/* Brand Tag Ribbon */}
-                  <span className="absolute bottom-2 left-3 font-display font-black text-white text-sm md:text-base uppercase tracking-wider italic">
-                    {brandName}
-                  </span>
                 </div>
 
                 {/* Micro Actions Area */}

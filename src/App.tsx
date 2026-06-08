@@ -113,14 +113,14 @@ export default function App() {
         {/* 1. Hero Section */}
         <Hero key={`hero-${imagesVersion}`} />
 
+        {/* 1.5 Trabalhamos com Peças de Multimarcas (Movida para baixo do Hero) */}
+        <Multimarcas key={`multimarcas-${imagesVersion}`} />
+
         {/* 2. Sobre a Empresa */}
         <About key={`about-${imagesVersion}`} />
 
         {/* 3. Categorias de Peças */}
         <Categories key={`categories-${imagesVersion}`} />
-
-        {/* 3.5 Trabalhamos com Peças de Multimarcas */}
-        <Multimarcas key={`multimarcas-${imagesVersion}`} />
 
         {/* 4. Diferenciais */}
         <Features key={`features-${imagesVersion}`} />

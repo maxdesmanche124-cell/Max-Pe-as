@@ -106,15 +106,14 @@ export default function Categories() {
                 className="group relative bg-white border border-stone-200 rounded-lg overflow-hidden shadow-xs hover:shadow-md hover:border-red-600 transition-all duration-300 transform hover:-translate-y-1 flex flex-col justify-between"
               >
                 <div>
-                  {/* Category Image Overlay */}
-                  <div className="relative h-44 w-full bg-stone-900 overflow-hidden">
+                  {/* Category Image Overlay - Square Aspect Ratio */}
+                  <div className="relative aspect-square w-full bg-stone-50 border-b border-stone-200 overflow-hidden flex items-center justify-center p-4">
                     <img
                       src={getImageUrl(`category-img-${category.id}`, category.imageUrl)}
                       alt={category.name}
                       referrerPolicy="no-referrer"
-                      className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 opacity-80"
+                      className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent" />
                     
                     {/* Floating Code Badge */}
                     <span className="absolute top-3 right-3 bg-red-600 text-white font-mono text-[10px] px-2.5 py-1 rounded-xs uppercase tracking-wider italic">
