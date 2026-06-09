@@ -46,7 +46,7 @@ export default function Shipping() {
             <div className="h-1 w-20 bg-red-600" />
             
             <p className="text-stone-300 text-sm md:text-base leading-relaxed">
-              Atendemos de forma expressa Belo Horizonte, toda a região metropolitana (Contagem, Betim, Nova Lima, etc.) e enviamos autopeças para qualquer cidade do território nacional através de transportadoras rodoviárias e aéreas parceiras.
+              Atendemos de forma expressa a região de Ribeirão Preto - SP e enviamos autopeças para qualquer cidade do território nacional através de transportadoras rodoviárias e aéreas parceiras.
             </p>
 
             {/* Strategic Image */}

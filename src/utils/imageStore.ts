@@ -53,7 +53,7 @@ export const defaultImages: SiteImage[] = [
     category: 'institutional',
     name: 'Imagem Sobre a Empresa',
     url: 'https://images.unsplash.com/photo-1504215680048-db15fc060c3a?auto=format&fit=crop&q=80&w=600',
-    description: 'Foto exibida na seção que detalha a história da MAXPEÇAS'
+    description: 'Foto exibida na seção que detalha a história da MAX PEÇAS'
   },
   {
     id: 'inst-shipping-main',

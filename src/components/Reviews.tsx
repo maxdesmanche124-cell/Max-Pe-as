@@ -13,11 +13,11 @@ export default function Reviews() {
             <CheckCircle className="h-4 w-4" /> RELACIONAMENTO E PARCERIA REAL
           </div>
           <h2 className="text-3xl md:text-5xl font-display font-extrabold text-stone-950 italic uppercase tracking-tighter">
-            Quem Compra, Recomenda a <span className="text-red-600">MAXPEÇAS</span>
+            Quem Compra, Recomenda a <span className="text-red-600">MAX PEÇAS</span>
           </h2>
           <div className="h-1 w-20 bg-red-650 mx-auto" />
           <p className="text-stone-600 text-sm md:text-base leading-relaxed">
-            Veja a opinião sincera de donos de veículos, mecânicos e gestores de frotas que confiam na AUTO PECAS MAX LTDA.
+            Veja a opinião sincera de donos de veículos, mecânica e gestores de frotas que confiam na MAX DOIMO PINHEIRO AUTO PECAS.
           </p>
         </div>
 
@@ -69,7 +69,7 @@ export default function Reviews() {
 
         {/* Google review disclaimer trust snippet */}
         <p className="text-[11px] text-stone-500 text-center mt-12">
-          Depoimentos auditados e coletados via formulários de satisfação interna e pós-venda MAXPEÇAS.
+          Depoimentos auditados e coletados via formulários de satisfação interna e pós-venda MAX PEÇAS.
         </p>
 
       </div>

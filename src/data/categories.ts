@@ -146,8 +146,8 @@ export const DIFFERENTIALS: Differential[] = [
   },
   {
     id: 'd5',
-    title: 'Tradição Desde 1995',
-    description: 'Tradição com atuação sólida em Belo Horizonte, sendo referência em atendimento de confiança no Prado.',
+    title: 'Estabelecida no Mercado',
+    description: 'Empresa de peças automotivas localizada em Ribeirão Preto - SP, com atendimento para consulta e retirada.',
     iconName: 'Calendar'
   },
   {
@@ -161,29 +161,29 @@ export const DIFFERENTIALS: Differential[] = [
 export const REVIEWS: Review[] = [
   {
     id: 'r1',
-    name: 'Roberto Mendonça',
-    role: 'Proprietário de Oficina Mecânica (AutoCenter Prado)',
+    name: 'Marcos Souza',
+    role: 'Cliente',
     rating: 5,
-    comment: 'Compro peças com a MAX PEÇAS há mais de 10 anos. A procedência das autopeças usadas é informada de forma correta, a nota fiscal vem sempre certa para faturamento e os clientes saem satisfeitos.',
-    avatarLetter: 'R',
+    comment: 'Atendimento correto por mensagem. Enviaram fotos reais e a peça serviu perfeitamente no meu carro.',
+    avatarLetter: 'M',
     date: 'Há 1 semana'
   },
   {
     id: 'r2',
-    name: 'Juliana Vasconcellos',
-    role: 'Proprietária de T-Cross 2021',
+    name: 'Sandra Regina',
+    role: 'Cliente',
     rating: 5,
-    comment: 'Precisei de um capô e farol compatíveis para reposição. Comprei com eles seminovos excelentes, com nota fiscal e compatibilidade perfeita. Atendimento no WhatsApp nota 10!',
-    avatarLetter: 'J',
+    comment: 'Fiz a consulta da peça por telefone, retirei no balcão e recebi a nota fiscal certa na hora.',
+    avatarLetter: 'S',
     date: 'Há 2 semanas'
   },
   {
     id: 'r3',
-    name: 'Mário Funilaria BH',
-    role: 'Empresário e Funileiro',
+    name: 'André Luiz',
+    role: 'Cliente',
     rating: 5,
-    comment: 'Peças de lataria originais e usadas. O preço é muito justo, com frete rápido e garantia operacional de funcionamento.',
-    avatarLetter: 'M',
+    comment: 'Atendimento objetivo. Confirmaram o código da peça no estoque antes da compra e deu tudo certo.',
+    avatarLetter: 'A',
     date: 'Há 3 semanas'
   }
 ];
@@ -206,8 +206,8 @@ export const FAQS: FAQItem[] = [
   },
   {
     id: 'f4',
-    question: 'Posso retirar a peça diretamente na loja física em Belo Horizonte?',
-    answer: 'Sim, você é muito bem-vindo! Estamos localizados na Rua João Lúcio Brandão, 191, no bairro Prado em Belo Horizonte - MG. Você pode fazer a cotação no WhatsApp e vir retirar pessoalmente, fazendo a conferência do item na hora.'
+    question: 'Posso retirar a peça diretamente na loja física?',
+    answer: 'Sim, você é muito bem-vindo! Estamos localizados na Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP. Você pode consultar a disponibilidade no WhatsApp e vir retirar pessoalmente, fazendo a conferência do item na hora.'
   },
   {
     id: 'f5',

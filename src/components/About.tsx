@@ -8,13 +8,8 @@ export default function About() {
   const highlights = [
     {
       icon: <Calendar className="h-6 w-6 text-red-600" />,
-      title: 'Empresa Fundada em 1995',
-      desc: 'Tradição e seriedade construídas ao longo de décadas no mercado de reposição de autopeças.'
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-red-600" />,
-      title: 'Endereço Físico em Belo Horizonte',
-      desc: 'Sede própria no bairro Prado, um dos principais polos automotivos de Minas Gerais.'
+      title: 'Empresa Estabelecida em Ribeirão Preto',
+      desc: 'Atuando desde 2019 no mercado de reposição de autopeças na região de Ribeirão Preto - SP.'
     },
     {
       icon: <Users className="h-6 w-6 text-red-600" />,
@@ -27,9 +22,14 @@ export default function About() {
       desc: 'Amplo estoque físico catalogado, higienizado e armazenado em galpão coberto e de fácil acesso.'
     },
     {
+      icon: <MapPin className="h-6 w-6 text-red-600" />,
+      title: 'Consulta de Disponibilidade',
+      desc: 'Nossa equipe realiza a consulta rápida no sistema para confirmar se a peça que você procura está disponível.'
+    },
+    {
       icon: <FileText className="h-6 w-6 text-red-600" />,
-      title: 'Nota Fiscal nas Vendas',
-      desc: 'Toda mercadoria comercializada acompanha rigorosamente nota fiscal eletrônica, garantindo total segurança fiscal.'
+      title: 'Atendimento Especializado',
+      desc: 'Equipe com conhecimento técnico para auxiliar na identificação exata e aplicação da peça correta para o veículo.'
     }
   ];
 
@@ -125,7 +125,7 @@ export default function About() {
                 Galeria da Empresa (Fotos Reais)
               </h3>
               <p className="text-stone-600 text-xs md:text-sm">
-                Confira imagens de nossas instalações no bairro Prado, Belo Horizonte. Clique na foto para ampliar.
+                Confira imagens de nossas instalações em Ribeirão Preto - SP. Clique na foto para ampliar.
               </p>
             </div>
 

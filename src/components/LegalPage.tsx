@@ -29,7 +29,7 @@ export default function LegalPage({ path, onNavigate }: LegalPageProps) {
 
             <div className="space-y-6 text-stone-300 text-sm md:text-base leading-relaxed">
               <p>
-                A <strong>AUTO PEÇAS MAX LTDA</strong> (doravante designada &quot;MAX PEÇAS&quot;), inscrita sob o CNPJ <strong>00.452.917/0001-27</strong>, estabelecida na Rua João Lúcio Brandão, 191, Prado, Belo Horizonte - MG, valoriza a privacidade dos seus usuários e clientes. Esta política descreve de forma clara e transparente como coletamos, armazenamos e tratamos suas informações pessoais.
+                A <strong>MAX DOIMO PINHEIRO AUTO PECAS</strong> (doravante designada &quot;MAX PEÇAS&quot;), inscrita sob o CNPJ <strong>33.403.195/0001-70</strong>, estabelecida na Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP, CEP 14075-390, valoriza a privacidade dos seus usuários e clientes. Esta política descreve de forma clara e transparente como coletamos, armazenamos e tratamos suas informações pessoais.
               </p>
 
               <div>
@@ -73,7 +73,7 @@ export default function LegalPage({ path, onNavigate }: LegalPageProps) {
               <div>
                 <h2 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">5. Direitos do Usuário</h2>
                 <p>
-                  Você, como titular de dados pessoais, tem o direito de solicitar a validação, correção, atualização ou exclusão definitiva de seus dados cadastrais de nossos registros. Para exercer esses direitos, basta enviar um e-mail detalhado para <strong>contato.maxpecas@gmail.com</strong> ou falar com nosso encarregado no WhatsApp de atendimento.
+                  Você, como titular de dados pessoais, tem o direito de solicitar a validação, correção, atualização ou exclusão definitiva de seus dados cadastrais de nossos registros. Para exercer esses direitos, basta enviar um e-mail detalhado para <strong>MAXDOIMOPINHEIROAUTOPECAS@gmail.com</strong> ou falar com nosso encarregado no WhatsApp de atendimento.
                 </p>
               </div>
 
@@ -108,7 +108,7 @@ export default function LegalPage({ path, onNavigate }: LegalPageProps) {
               <div>
                 <h2 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">1. Proposta Comercial e Vitrine Virtual</h2>
                 <p>
-                  Este portal funciona como uma vitrine virtual catalogada de peças automotivas usadas e seminovas comercializadas pela AUTO PEÇAS MAX LTDA. O preenchimento de formulários, solicitações ou cliques nos botões direcionam o usuário para o nosso canal de comunicação no WhatsApp comercial, onde um consultor técnico qualificado realizará a verificação de compatibilidade, preços vigentes e as tratativas para atendimento e fechamento.
+                  Este portal funciona como uma vitrine virtual catalogada de peças automotivas usadas e seminovas comercializadas pela MAX DOIMO PINHEIRO AUTO PECAS. O preenchimento de formulários, solicitações ou cliques nos botões direcionam o usuário para o nosso canal de comunicação no WhatsApp comercial, onde um consultor técnico qualificado realizará a verificação de compatibilidade, preços vigentes e as tratativas para atendimento e fechamento.
                 </p>
                 <p className="mt-2 text-stone-400">
                   Nosso site não realiza transações nem vendas automáticas imediatas. Toda venda é processada e finalizada de forma assistida através de atendimento humano.
@@ -210,7 +210,7 @@ export default function LegalPage({ path, onNavigate }: LegalPageProps) {
               <div>
                 <h2 className="text-lg font-bold text-white mb-2 uppercase tracking-wide">5. Canal Oficial de Atendimento</h2>
                 <p>
-                  Para abertura de protocolo técnico de garantia, trocas ou esclarecimentos, entre em contato imediatamente com nossos consultores corporativos através do WhatsApp <strong>0800 000 3728</strong> ou relate formalmente para o e-mail: <strong>contato.maxpecas@gmail.com</strong>.
+                  Para abertura de protocolo técnico de garantia, trocas ou esclarecimentos, entre em contato imediatamente com nossos consultores corporativos através do WhatsApp <strong>0800 000 3728</strong> ou relate formalmente para o e-mail: <strong>MAXDOIMOPINHEIROAUTOPECAS@gmail.com</strong>.
                 </p>
               </div>
             </div>
@@ -247,16 +247,16 @@ export default function LegalPage({ path, onNavigate }: LegalPageProps) {
         {/* Quick corporate trust footer card inside the document */}
         <div className="mt-12 pt-8 border-t border-stone-850 grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
           <div className="space-y-1.5">
-            <p className="text-sm font-bold text-white uppercase tracking-tight">AUTO PEÇAS MAX LTDA</p>
+            <p className="text-sm font-bold text-white uppercase tracking-tight">MAX DOIMO PINHEIRO AUTO PECAS</p>
             <p className="text-xs text-stone-500 leading-relaxed font-mono">
-              CNPJ: 00.452.917/0001-27<br />
-              Rua João Lúcio Brandão, 191, Prado<br />
-              Belo Horizonte - MG, CEP 30411-046
+              CNPJ: 33.403.195/0001-70<br />
+              Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira<br />
+              Ribeirão Preto - SP, CEP 14075-390
             </p>
           </div>
           <div className="flex flex-col md:items-end gap-1 text-xs text-stone-400 font-mono">
             <span className="flex items-center gap-1"><Phone className="h-3 w-3 text-emerald-500" /> Suporte: 0800 000 3728</span>
-            <span className="flex items-center gap-1"><Mail className="h-3 w-3 text-red-500" /> e-mail: contato.maxpecas@gmail.com</span>
+            <span className="flex items-center gap-1"><Mail className="h-3 w-3 text-red-500" /> e-mail: MAXDOIMOPINHEIROAUTOPECAS@gmail.com</span>
           </div>
         </div>
 

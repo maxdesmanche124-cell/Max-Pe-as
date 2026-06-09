@@ -2,7 +2,7 @@ import React from 'react';
 import { MapPin, Clock, Phone, Mail, Building2, ExternalLink } from 'lucide-react';
 
 export default function Location() {
-  const addressQuery = "Rua João Lúcio Brandão, 191, Prado, Belo Horizonte - MG, CEP 30411-046";
+  const addressQuery = "Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP, CEP 14075-390";
   const mapUrl = `https://maps.google.com/maps?q=${encodeURIComponent(addressQuery)}&t=&z=16&ie=UTF8&iwloc=&output=embed`;
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(addressQuery)}`;
 
@@ -22,11 +22,11 @@ export default function Location() {
               </div>
               
               <h2 className="text-3xl md:text-5xl font-display font-extrabold text-stone-950 italic uppercase tracking-tighter text-left leading-none">
-                Nossa Sede em <span className="text-red-650">Belo Horizonte</span>
+                Nossa Sede em <span className="text-red-650">Ribeirão Preto</span>
               </h2>
               
               <p className="text-stone-600 text-sm md:text-base leading-relaxed text-left">
-                Estamos localizados estrategicamente no tradicional bairro Prado, um dos maiores polos comerciais de autopeças de Minas Gerais. Amplo galpão próprio com fácil acesso e estacionamento facilitado para carregamento de peças.
+                Estamos localizados estrategicamente na cidade de Ribeirão Preto - SP. Amplo galpão próprio com fácil acesso e estacionamento facilitado para carregamento de peças.
               </p>
 
               {/* Informative Address Group card list */}
@@ -37,9 +37,9 @@ export default function Location() {
                   <div className="text-left text-sm md:text-base">
                     <p className="font-bold text-stone-900 uppercase italic">Endereço Oficial:</p>
                     <p className="text-stone-600 text-sm leading-relaxed">
-                      Rua João Lúcio Brandão, 191<br />
-                      Bairro Prado, Belo Horizonte - MG<br />
-                      CEP 30411-046
+                      Av. Thomaz Alberto Whately, 1435<br />
+                      Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP<br />
+                      CEP 14075-390
                     </p>
                   </div>
                 </div>
@@ -59,11 +59,11 @@ export default function Location() {
                 <div className="flex gap-4 p-4 bg-white border border-stone-200 rounded-sm shadow-xs">
                   <Building2 className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
                   <div className="text-left text-sm md:text-base">
-                    <p className="font-bold text-stone-900 uppercase italic">Dados do Credenciamento:</p>
+                    <p className="font-bold text-stone-900 uppercase italic">Identidade Jurídica:</p>
                     <p className="text-stone-600 text-xs md:text-sm">
-                      AUTO PECAS MAX LTDA<br />
-                      CNPJ: 00.452.917/0001-27<br />
-                      Registro cadastral sob compliance tributária ativo.
+                      MAX DOIMO PINHEIRO AUTO PECAS<br />
+                      CNPJ: 33.403.195/0001-70<br />
+                      Empresa localizada em Ribeirão Preto/SP.
                     </p>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function Location() {
           <div className="lg:col-span-7 h-[400px] lg:h-auto min-h-[350px] relative rounded-lg overflow-hidden border border-stone-250 shadow-lg">
             <iframe
               id="location-google-maps-iframe"
-              title="Localização Física AUTO PECAS MAX LTDA"
+              title="Localização Física MAX DOIMO PINHEIRO AUTO PECAS"
               src={mapUrl}
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen={false}

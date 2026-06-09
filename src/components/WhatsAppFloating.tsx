@@ -33,7 +33,7 @@ export default function WhatsAppFloating() {
               <WhatsAppIcon className="h-4 w-4" />
             </div>
             <div>
-              <p className="font-semibold text-xs text-red-500 uppercase italic tracking-wider">MAXPEÇAS de Plantão</p>
+              <p className="font-semibold text-xs text-red-500 uppercase italic tracking-wider">MAX PEÇAS de Plantão</p>
               <p className="text-[11px] text-stone-300">Olá! Qual peça você precisa para o seu veículo hoje?</p>
             </div>
           </div>

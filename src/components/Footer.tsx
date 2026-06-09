@@ -34,7 +34,7 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
             </div>
             
             <p className="text-xs md:text-sm leading-relaxed text-stone-400">
-              Empresa estabelecida em Belo Horizonte desde 1995, especializada no comércio de peças automotivas usadas e seminovas. Oferecemos atendimento por telefone, WhatsApp e e-mail com emissão de nota fiscal em todas as vendas e consulta simplificada de disponibilidade em estoque.
+              Empresa estabelecida em Ribeirão Preto - SP desde 2019, especializada no comércio de peças automotivas usadas e seminovas. Oferecemos atendimento por telefone, WhatsApp e e-mail com emissão de nota fiscal em todas as vendas e consulta simplificada de disponibilidade em estoque.
             </p>
 
             <div className="p-3 bg-stone-900/50 rounded-sm border border-stone-850 space-y-1 text-[11px] font-sans">
@@ -134,7 +134,7 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
             </ul>
 
             <div className="pt-2 text-stone-500 text-[10px] space-y-1">
-              <p>• Prado, Belo Horizonte</p>
+              <p>• Ribeirão Preto - SP</p>
               <p>• Estoque Catalogado sem Promessas Falsas</p>
             </div>
           </div>
@@ -163,7 +163,7 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
                 <Mail className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
                 <div>
                   <p className="text-stone-300 break-all font-semibold text-xs leading-none">
-                    contato.maxpecas@gmail.com
+                    MAXDOIMOPINHEIROAUTOPECAS@gmail.com
                   </p>
                   <p className="text-[11px] text-stone-500">Dúvidas administrativas</p>
                 </div>
@@ -171,7 +171,7 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
               <li className="flex items-start gap-2.5">
                 <MapPin className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
                 <p className="text-xs text-stone-400">
-                  Rua João Lúcio Brandão, 191, Prado, Belo Horizonte - MG, CEP 30411-046
+                  Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP, CEP 14075-390
                 </p>
               </li>
             </ul>
@@ -185,10 +185,10 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 border-b border-stone-900/50 pb-6">
             <div className="text-left space-y-1">
               <p className="font-semibold text-stone-300 text-xs text-center md:text-left">
-                AUTO PECAS MAX LTDA | CNPJ: 00.452.917/0001-27
+                MAX DOIMO PINHEIRO AUTO PECAS | CNPJ: 33.403.195/0001-70
               </p>
               <p className="text-center md:text-left leading-relaxed text-stone-500">
-                Empresa estabelecida em Belo Horizonte desde 1995, especializada no comércio de peças automotivas usadas e seminovas com atendimento presencial, estoque próprio e emissão de nota fiscal em todas as operações.
+                Empresa estabelecida em Ribeirão Preto - SP desde 2019, especializada no comércio de peças automotivas usadas e seminovas com atendimento presencial, estoque próprio e emissão de nota fiscal em todas as operações.
               </p>
             </div>
             
@@ -199,7 +199,7 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
           </div>
 
           <p className="text-center">
-            &copy; {currentYear} MAX PEÇAS - AUTO PECAS MAX LTDA. Todos os direitos reservados. É proibida a reprodução total ou parcial das mídias digitais sem autorização prévia por escrito.
+            &copy; {currentYear} MAX PEÇAS - MAX DOIMO PINHEIRO AUTO PECAS. Todos os direitos reservados. É proibida a reprodução total ou parcial das mídias digitais sem autorização prévia por escrito.
           </p>
 
         </div>

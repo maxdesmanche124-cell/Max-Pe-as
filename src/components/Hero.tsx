@@ -36,7 +36,7 @@ export default function Hero() {
             {/* Trust Badging */}
             <div className="inline-flex items-center gap-2" id="trust-pill-tag">
               <span className="bg-red-600 text-white text-[10px] font-bold px-3 py-1 rounded-sm uppercase tracking-tighter italic">
-                Desde 1995 em Belo Horizonte
+                Sede em Ribeirão Preto - SP
               </span>
               <span className="text-xs font-mono font-bold text-stone-400 tracking-wider uppercase hidden sm:inline-block">
                 • Procedência Informada
@@ -50,7 +50,7 @@ export default function Hero() {
 
             {/* Realistic Bullet Substantiation without false promises */}
             <p className="text-base sm:text-lg text-stone-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
-              Consulte disponibilidade de motores, câmbios, latarias, módulos, suspensão, rodas, faróis e outras peças automotivas. Atendimento especializado desde 1995.
+              Consulte disponibilidade de motores, câmbios, latarias, módulos, suspensão, rodas, faróis e outras peças automotivas com atendimento especializado.
             </p>
 
             {/* Horizontal trust parameters badge-group */}
@@ -75,7 +75,7 @@ export default function Hero() {
                 <BadgeCheck className="h-5 w-5 text-red-500 flex-shrink-0" />
                 <div className="text-left">
                   <p className="text-xs text-stone-400 font-mono">LOJA FÍSICA</p>
-                  <p className="text-sm font-semibold text-white">Desde 1995 em BH</p>
+                  <p className="text-sm font-semibold text-white">Ribeirão Preto - SP</p>
                 </div>
               </div>
             </div>

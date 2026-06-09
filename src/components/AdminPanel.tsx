@@ -65,7 +65,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email === 'contato.maxpecas@gmail.com' && password === '117711') {
+    if (email === 'MAXDOIMOPINHEIROAUTOPECAS@gmail.com' && password === '117711') {
       setIsAuthenticated(true);
       setErrorMsg('');
       sessionStorage.setItem('maxpecas_auth', 'true');
@@ -346,7 +346,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="contato.maxpecas@gmail.com"
+                    placeholder="MAXDOIMOPINHEIROAUTOPECAS@gmail.com"
                     className="w-full bg-stone-950 border border-stone-800 text-white rounded-sm pl-10 pr-4 py-3 placeholder:text-stone-650 text-sm focus:border-emerald-600 focus:outline-none focus:ring-0"
                   />
                 </div>

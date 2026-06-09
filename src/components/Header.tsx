@@ -65,10 +65,10 @@ export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: Hea
             </div>
             <div className="hidden md:flex flex-col">
               <span className="text-[10px] font-mono font-bold text-stone-300 tracking-[0.15em] uppercase">
-                AUTO PEÇAS MAX LTDA
+                MAX DOIMO PINHEIRO AUTO PECAS
               </span>
               <span className="text-[8px] font-mono text-red-500 tracking-widest uppercase">
-                CNPJ 00.452.917/0001-27
+                CNPJ 33.403.195/0001-70
               </span>
             </div>
           </a>

@@ -23,7 +23,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
             </div>
             <div className="space-y-4 text-stone-700 text-sm md:text-base leading-relaxed overflow-y-auto max-h-[60vh] pr-2">
               <p>
-                A <strong>AUTO PECAS MAX LTDA</strong> (doravante designada &quot;MAXPEÇAS&quot;), inscrita sob o CNPJ <strong>00.452.917/0001-27</strong>, estabelecida na Rua João Lúcio Brandão, 191, Prado, Belo Horizonte - MG, valoriza a privacidade dos seus usuários e clientes. Esta política descreve como coletamos, armazenamos e tratamos suas informações pessoais.
+                A <strong>MAX DOIMO PINHEIRO AUTO PECAS</strong> (doravante designada &quot;MAX PEÇAS&quot;), inscrita sob o CNPJ <strong>33.403.195/0001-70</strong>, estabelecida na Av. Thomaz Alberto Whately, 1435, Parque Industrial Coronel Quito Junqueira, Ribeirão Preto - SP, CEP 14075-390, valoriza a privacidade dos seus usuários e clientes. Esta política descreve como coletamos, armazenamos e tratamos suas informações pessoais.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">1. Coleta de Informações</h3>
               <p>
@@ -41,7 +41,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Compartilhamento com Terceiros</h3>
               <p>
-                A MAXPEÇAS não vende, aluga ou comercializa seus dados pessoais para terceiros. Seus dados cadastrais poderão ser compartilhados unicamente com os órgãos fiscais governamentais (para fins de geração de nota fiscal eletrônica) ou empresas de transporte parceiras encarregadas de realizar a entrega física do seu produto.
+                A MAX PEÇAS não vende, aluga ou comercializa seus dados pessoais para terceiros. Seus dados cadastrais poderão ser compartilhados unicamente com os órgãos fiscais governamentais (para fins de geração de nota fiscal eletrônica) ou empresas de transporte parceiras encarregadas de realizar a entrega física do seu produto.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">4. Segurança dos Dados</h3>
               <p>
@@ -49,7 +49,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">5. Direitos do Usuário</h3>
               <p>
-                Você poderá a qualquer tempo solicitar a validação, alteração ou exclusão definitiva de seus dados cadastrais de nossos servidores entrando em contato por e-mail pelo endereço <strong>contato.maxpecas@gmail.com</strong>.
+                Você poderá a qualquer tempo solicitar a validação, alteração ou exclusão definitiva de seus dados cadastrais de nossos servidores entrando em contato por e-mail pelo endereço <strong>MAXDOIMOPINHEIROAUTOPECAS@gmail.com</strong>.
               </p>
               <p className="text-xs text-stone-500 mt-6">
                 Última atualização oficial realizada em: 08 de Junho de 2026.
@@ -69,11 +69,11 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
             </div>
             <div className="space-y-4 text-stone-700 text-sm md:text-base leading-relaxed overflow-y-auto max-h-[60vh] pr-2">
               <p>
-                Seja bem-vindo ao portal institucional da <strong>MAXPEÇAS</strong>. Ao acessar e utilizar este endereço eletrônico, você manifesta sua concordância tácita com os presentes Termos de Uso.
+                Seja bem-vindo ao portal institucional da <strong>MAX PEÇAS</strong>. Ao acessar e utilizar este endereço eletrônico, você manifesta sua concordância tácita com os presentes Termos de Uso.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">1. Dinâmica da Consulta e Orçamento</h3>
               <p>
-                Este site funciona como uma vitrine virtual catalogada de peças automotivas comercializadas pela AUTO PECAS MAX LTDA. O preenchimento ou clique em botões direciona o usuário para o nosso canal oficial de comunicação no WhatsApp empresarial, onde um consultor técnico qualificado realizará a tratativa de preços, validação imediata do estoque físico atual da peça solicitada e fechamento comercial das condições.
+                Este site funciona como uma vitrine virtual catalogada de peças automotivas comercializadas pela MAX DOIMO PINHEIRO AUTO PECAS. O preenchimento ou clique em botões direciona o usuário para o nosso canal oficial de comunicação no WhatsApp empresarial, onde um consultor técnico qualificado realizará a tratativa de preços, validação imediata do estoque físico atual da peça solicitada e fechamento comercial das condições.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">2. Transparência de Estoque e Isenção de Promessas</h3>
               <p>
@@ -85,11 +85,11 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Direitos de Propriedade Intelectual</h3>
               <p>
-                Os materiais visuais, logotipos, fotografias autorais e textos inseridos neste site são de propriedade exclusiva da AUTO PECAS MAX LTDA ou licenciados regularmente. Fica vedada a cópia desautorizada para fins concorrenciais comerciais.
+                Os materiais visuais, logotipos, fotografias autorais e textos inseridos neste site são de propriedade exclusiva da MAX DOIMO PINHEIRO AUTO PECAS ou licenciados regularmente. Fica vedada a cópia desautorizada para fins concorrenciais comerciais.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">4. Foro de Eleição</h3>
               <p>
-                Fica eleito o foro da Comarca de Belo Horizonte - MG para dirimir quaisquer controvérsias decorrentes das interações geradas por este site eletrônico institucional.
+                Fica eleito o foro da Comarca de Ribeirão Preto - SP para dirimir quaisquer controvérsias decorrentes das interações geradas por este site eletrônico institucional.
               </p>
             </div>
           </>
@@ -106,7 +106,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
             </div>
             <div className="space-y-4 text-stone-700 text-sm md:text-base leading-relaxed overflow-y-auto max-h-[60vh] pr-2">
               <p>
-                Na <strong>MAXPEÇAS</strong>, a transparência e a seriedade comercial andam lado a lado. Todas as peças automotivas, sejam novas ou seminovas de procedência verificada, possuem garantia assegurada.
+                Na <strong>MAX PEÇAS</strong>, a transparência e a seriedade comercial andam lado a lado. Todas as peças automotivas, sejam novas ou seminovas de procedência verificada, possuem garantia assegurada.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">1. Prazo da Garantia</h3>
               <p>
@@ -145,7 +145,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
             </div>
             <div className="space-y-4 text-stone-700 text-sm md:text-base leading-relaxed overflow-y-auto max-h-[60vh] pr-2">
               <p>
-                A <strong>MAXPEÇAS</strong> preza pela satisfação do cliente. Caso a autopeça adquirida não sirva perfeitamente ou apresente inconformidade, dispomos de política ágil para regularização.
+                A <strong>MAX PEÇAS</strong> preza pela satisfação do cliente. Caso a autopeça adquirida não sirva perfeitamente ou apresente inconformidade, dispomos de política ágil para regularização.
               </p>
               <h3 className="font-semibold text-stone-900 mt-4">1. Direito de Arrependimento de Compra Virtual</h3>
               <p>
@@ -153,7 +153,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </p>
               <ul className="list-disc pl-5 space-y-1">
                 <li>Nesses casos, a peça deve ser reempacotada com todos os acessórios protetores originais;</li>
-                <li>O reembolso do valor pago será providenciado estornando na mesma via de pagamento (PIX ou depósito bancário) tão logo o item chegue em nossa oficina de Belo Horizonte e passe por crivo examinador de conformidade dos selos.</li>
+                <li>O reembolso do valor pago será providenciado estornando na mesma via de pagamento (PIX ou depósito bancário) tão logo o item chegue em nossa sede de Ribeirão Preto - SP e passe por crivo examinador de conformidade dos selos.</li>
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">2. Troca de Peças Adquiridas com Código Incorreto</h3>
               <p>
@@ -165,7 +165,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Trâmite de Devoluções</h3>
               <p>
-                Para início formal do protocolo de trocas ou estornos, envie mensagem direta ao WhatsApp Oficial de Suporte no número <strong>0800 000 3728</strong> ou relate o ocorrido detalhadamente para <strong>contato.maxpecas@gmail.com</strong> anexando foto da etiqueta do produto e número da Nota Fiscal de venda correspondente.
+                Para início formal do protocolo de trocas ou estornos, envie mensagem direta ao WhatsApp Oficial de Suporte no número <strong>0800 000 3728</strong> ou relate o ocorrido detalhadamente para <strong>MAXDOIMOPINHEIROAUTOPECAS@gmail.com</strong> anexando foto da etiqueta do produto e número da Nota Fiscal de venda correspondente.
               </p>
             </div>
           </>

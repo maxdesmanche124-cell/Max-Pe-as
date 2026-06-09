@@ -18,7 +18,7 @@ export default function HowItWorks() {
     {
       num: '03',
       title: 'Aprovando a Cotação',
-      description: 'Combinamos a melhor logística de frete ou agendamos sua retirada em nossa sede no Prado. Emitimos a sua respectiva Nota Fiscal.',
+      description: 'Combinamos a melhor logística de frete ou agendamos sua retirada em nossa sede em Ribeirão Preto - SP. Emitimos a sua respectiva Nota Fiscal.',
       icon: <ClipboardCheck className="h-6 w-6 text-white" />
     },
     {
