@@ -131,6 +131,41 @@ let memoryCache: SiteImage[] = [];
 // Memory cache for category images from Supabase table
 export let categoryImagesCache: Record<string, string> = {};
 
+// Helper to merge loaded list with default schema so new layouts are immediately configured on other clients
+export function mergeWithDefaultImages(loadedList: SiteImage[]): SiteImage[] {
+  if (!Array.isArray(loadedList)) return defaultImages;
+  
+  // Filter out any corrupted, non-object, empty, or ID-less items defensively
+  const validLoadedList = loadedList.filter(item => {
+    return item && typeof item === 'object' && typeof item.id === 'string' && typeof item.url === 'string';
+  });
+
+  // If no valid items exist, resort fully to defaultImages to prevent system blank out
+  if (validLoadedList.length === 0) {
+    return defaultImages;
+  }
+
+  // Create a map of loaded images for fast O(1) lookup
+  const loadedMap = new Map<string, SiteImage>();
+  validLoadedList.forEach(item => {
+    loadedMap.set(item.id, item);
+  });
+
+  // Map default images, merging in any saved URLs from the loaded list
+  const merged = defaultImages.map(defImg => {
+    const saved = loadedMap.get(defImg.id);
+    if (saved && saved.url && saved.url.trim()) {
+      return { ...defImg, url: saved.url.trim() };
+    }
+    return defImg;
+  });
+
+  // Include any extra user-inserted custom images
+  const customImages = validLoadedList.filter(item => item && item.isCustom);
+
+  return [...merged, ...customImages];
+}
+
 // Helper to query current state of images
 export function getSavedImages(): SiteImage[] {
   let images: SiteImage[] = [];
@@ -147,8 +182,12 @@ export function getSavedImages(): SiteImage[] {
     } else {
       try {
         const parsed = JSON.parse(raw);
-        memoryCache = parsed;
-        images = parsed;
+        if (!parsed || !Array.isArray(parsed)) {
+          throw new Error('Parsed localStorage is not a valid array');
+        }
+        const merged = mergeWithDefaultImages(parsed);
+        memoryCache = merged;
+        images = merged;
       } catch (err) {
         memoryCache = [...defaultImages];
         images = defaultImages;
@@ -172,6 +211,8 @@ export function saveImages(images: SiteImage[]) {
   memoryCache = [...images];
   if (typeof window !== 'undefined') {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(images));
+    // Immediately dispatch local custom event to update render cycles in real-time
+    window.dispatchEvent(new CustomEvent('maxpecas_images_updated', { detail: images }));
   }
 }
 
@@ -201,31 +242,89 @@ export async function saveMetadataToSupabase(imagesList: SiteImage[]): Promise<b
   }
 }
 
-// Synchronize memoryCache and localStorage with the live Supabase storage registry
+// Synchronize memoryCache and localStorage with the live Supabase storage registry with Cache Buster and Defensive Fallbacks
 export async function syncImagesWithSupabase(): Promise<SiteImage[] | null> {
   if (!isSupabaseConfigured() || !supabase) return null;
   try {
     await ensureBucketExists();
-    const { data, error } = await supabase.storage
-      .from('site-images')
-      .download('uploads/site-images-metadata.json');
 
-    if (error) {
-      // If metadata not found, create and seed it
-      console.log('uploads/site-images-metadata.json not found. Initializing and migrating default state...');
-      await saveMetadataToSupabase(getSavedImages());
-      return getSavedImages();
+    // Construct the public URL and fetch with a cache-buster query parameter to bypass browser/CDN caches
+    const { data } = supabase.storage
+      .from('site-images')
+      .getPublicUrl('uploads/site-images-metadata.json');
+    
+    let remoteList: SiteImage[] | null = null;
+
+    if (data && data.publicUrl) {
+      const publicUrlWithBuster = `${data.publicUrl}?t=${Date.now()}`;
+      console.log('[syncImagesWithSupabase] Buscando metadados via URL pública com cache buster:', publicUrlWithBuster);
+      try {
+        const response = await fetch(publicUrlWithBuster, { cache: 'no-store' });
+        if (response.ok) {
+          const parsed = await response.json();
+          if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+            remoteList = parsed;
+          }
+        }
+      } catch (fetchErr) {
+        console.warn('Fetch public URL failed, resorting to client fallback download', fetchErr);
+      }
     }
 
-    const text = await data.text();
-    const remoteList = JSON.parse(text) as SiteImage[];
-    
-    // Update local cache & storage so layout picks it up
-    saveImages(remoteList);
-    return remoteList;
+    // Fallback if fetch failed or returned null
+    if (!remoteList) {
+      console.log('[syncImagesWithSupabase] Buscando via download nativo do Supabase client...');
+      const { data: downloadData, error } = await supabase.storage
+        .from('site-images')
+        .download('uploads/site-images-metadata.json');
+
+      if (error) {
+        // If metadata not found, create, seed and migrate
+        console.log('uploads/site-images-metadata.json not found on Supabase. Initializing and saving...');
+        const currentLocal = getSavedImages();
+        await saveMetadataToSupabase(currentLocal);
+        return currentLocal;
+      }
+
+      try {
+        const text = await downloadData.text();
+        if (text && text.trim()) {
+          const parsed = JSON.parse(text);
+          if (parsed && Array.isArray(parsed) && parsed.length > 0) {
+            remoteList = parsed;
+          }
+        }
+      } catch (jsonErr) {
+        console.error('Failed to parse remote JSON metadata', jsonErr);
+      }
+    }
+
+    // Process result defensively
+    if (remoteList && Array.isArray(remoteList) && remoteList.length > 0) {
+      // Merge remote registry with our current schema to avoid missing new IDs (e.g. galeria "Nossa Empresa")
+      const mergedList = mergeWithDefaultImages(remoteList);
+      
+      // Update local cache & storage so layout picks it up
+      saveImages(mergedList);
+      
+      // If the merged list added missing elements, save the updated schema back to Supabase automatically
+      if (mergedList.length !== remoteList.length) {
+        saveMetadataToSupabase(mergedList);
+      }
+      
+      return mergedList;
+    } else {
+      console.warn('[syncImagesWithSupabase] Remote list is missing, empty or invalid. Using default merged images.');
+      const fallbackList = mergeWithDefaultImages(getSavedImages() || []);
+      saveImages(fallbackList);
+      return fallbackList;
+    }
   } catch (err) {
     console.warn('Sync images with Supabase failed. Using local state.', err);
-    return null;
+    // Even on crash, fallback safely to safe local state
+    const fallbackList = mergeWithDefaultImages(getSavedImages() || []);
+    saveImages(fallbackList);
+    return fallbackList;
   }
 }
 
@@ -362,12 +461,29 @@ export async function deleteCategoryImageFromSupabase(id: string): Promise<boole
   }
 }
 
+// Helper to append/update a query parameter for cache busting
+export function appendCacheBuster(url: string): string {
+  if (!url) return url;
+  try {
+    const isAbsolute = url.startsWith('http://') || url.startsWith('https://');
+    const baseUrl = isAbsolute ? url : 'https://dummy.com' + (url.startsWith('/') ? '' : '/') + url;
+    const parsed = new URL(baseUrl);
+    parsed.searchParams.set('v', Date.now().toString());
+    const finalUrl = isAbsolute ? parsed.toString() : parsed.pathname + parsed.search;
+    return finalUrl;
+  } catch (err) {
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}v=${Date.now()}`;
+  }
+}
+
 // Update single image URL
 export function updateImageUrl(id: string, newUrl: string): SiteImage[] {
+  const versionedUrl = appendCacheBuster(newUrl);
   const current = getSavedImages();
   const updated = current.map(img => {
     if (img.id === id) {
-      return { ...img, url: newUrl };
+      return { ...img, url: versionedUrl };
     }
     return img;
   });
@@ -376,12 +492,12 @@ export function updateImageUrl(id: string, newUrl: string): SiteImage[] {
   // Intercept category image update and save directly to Supabase table 'category_images'
   if (id.startsWith('category-img-')) {
     const categoryId = id.replace('category-img-', '');
-    categoryImagesCache[categoryId] = newUrl;
+    categoryImagesCache[categoryId] = versionedUrl;
     if (typeof window !== 'undefined') {
-      localStorage.setItem(`maxpecas_category_img_${categoryId}`, newUrl);
+      localStorage.setItem(`maxpecas_category_img_${categoryId}`, versionedUrl);
     }
     if (isSupabaseConfigured() && supabase) {
-      saveCategoryImageToSupabase(categoryId, newUrl);
+      saveCategoryImageToSupabase(categoryId, versionedUrl);
     }
   }
   
