@@ -84,7 +84,7 @@ export const defaultImages: SiteImage[] = [
     category: 'diferencial',
     name: 'Imagem Ilustrativa - Segurança & Procedência',
     url: 'https://images.unsplash.com/photo-1486006920555-c77dce18193b?auto=format&fit=crop&q=80&w=400',
-    description: 'Fundo ilustrativo do compromisso de integridade regulatória e desmonte credenciado'
+    description: 'Fundo ilustrativo do compromisso de integridade e procedência das peças'
   },
   // 6. Avaliações (Placeholder or user photos)
   {
@@ -94,13 +94,34 @@ export const defaultImages: SiteImage[] = [
     url: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=400',
     description: 'Imagem de perfil ilustrativa exibida na seção de feedbacks e satisfação'
   },
-  // 7. Imagens Gerais
+  // 7. Imagens Gerais / Galeria Nossa Empresa
   {
-    id: 'general-facade',
+    id: 'empresa-fachada',
     category: 'general',
-    name: 'Fachada da Loja Física',
-    url: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=500',
-    description: 'Miniatura representativa da localização e galpão de estoque físico'
+    name: 'Fachada da Nossa Empresa',
+    url: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800',
+    description: 'Foto real da fachada física da MAX PEÇAS'
+  },
+  {
+    id: 'empresa-estoque',
+    category: 'general',
+    name: 'Nosso Estoque de Peças',
+    url: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&q=80&w=800',
+    description: 'Foto real do estoque organizado'
+  },
+  {
+    id: 'empresa-balcao',
+    category: 'general',
+    name: 'Balcão de Atendimento',
+    url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
+    description: 'Foto real do balcão de atendimento presencial'
+  },
+  {
+    id: 'empresa-interna',
+    category: 'general',
+    name: 'Área Interna Operacional',
+    url: 'https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&q=80&w=800',
+    description: 'Foto real da área interna de triagem de peças'
   }
 ];
 

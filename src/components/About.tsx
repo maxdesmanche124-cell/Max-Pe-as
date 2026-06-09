@@ -1,143 +1,209 @@
-import React from 'react';
-import { Calendar, Building2, MapPin, BadgeCheck, FileText, Sparkles } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, MapPin, Users, Package, FileText, ChevronRight, X, ZoomIn, Building2 } from 'lucide-react';
 import { getImageUrl } from '../utils/imageStore';
 
 export default function About() {
-  const stats = [
-    { label: 'Anos de Tradição', value: 'Desde 1995' },
-    { label: 'Nota Fiscal em Vendas', value: 'Emissão de NF' },
-    { label: 'Origem das Peças', value: 'Informada' },
-    { label: 'Sede Própria', value: 'Belo Horizonte' }
+  const [activePhoto, setActivePhoto] = useState<string | null>(null);
+
+  const highlights = [
+    {
+      icon: <Calendar className="h-6 w-6 text-red-600" />,
+      title: 'Empresa Fundada em 1995',
+      desc: 'Tradição e seriedade construídas ao longo de décadas no mercado de reposição de autopeças.'
+    },
+    {
+      icon: <MapPin className="h-6 w-6 text-red-600" />,
+      title: 'Endereço Físico em Belo Horizonte',
+      desc: 'Sede própria no bairro Prado, um dos principais polos automotivos de Minas Gerais.'
+    },
+    {
+      icon: <Users className="h-6 w-6 text-red-600" />,
+      title: 'Atendimento ao Público',
+      desc: 'Portas abertas para receber proprietários, frotistas e profissionais da mecânica com atendimento consultivo.'
+    },
+    {
+      icon: <Package className="h-6 w-6 text-red-600" />,
+      title: 'Estoque Próprio',
+      desc: 'Amplo estoque físico catalogado, higienizado e armazenado em galpão coberto e de fácil acesso.'
+    },
+    {
+      icon: <FileText className="h-6 w-6 text-red-600" />,
+      title: 'Nota Fiscal nas Vendas',
+      desc: 'Toda mercadoria comercializada acompanha rigorosamente nota fiscal eletrônica, garantindo total segurança fiscal.'
+    }
   ];
 
+  const gallery = [
+    {
+      id: 'empresa-fachada',
+      defaultUrl: 'https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&q=80&w=800',
+      title: 'Fachada Física',
+      category: 'fachada'
+    },
+    {
+      id: 'empresa-estoque',
+      defaultUrl: 'https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&q=80&w=800',
+      title: 'Estoque de Peças',
+      category: 'estoque'
+    },
+    {
+      id: 'empresa-balcao',
+      defaultUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=800',
+      title: 'Balcão de Atendimento',
+      category: 'atendimento'
+    },
+    {
+      id: 'empresa-interna',
+      defaultUrl: 'https://images.unsplash.com/photo-1517524206127-48bbd363f3d7?auto=format&fit=crop&q=80&w=800',
+      title: 'Área Interna Operacional',
+      category: 'área interna'
+    }
+  ];
+
+  const getWhatsAppUrl = () => {
+    const text = 'Olá, gostaria de fazer um orçamento com a MAX PEÇAS.';
+    const encoded = encodeURIComponent(text);
+    return `https://wa.me/558000003728?text=${encoded}`;
+  };
+
   return (
-    <section id="sobre" className="py-20 md:py-28 bg-white border-b border-stone-150">
+    <section id="sobre" className="py-20 md:py-28 bg-white border-b border-stone-150 relative z-10" style={{ contentVisibility: 'auto' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto pb-16 space-y-4">
           <div className="inline-flex items-center gap-1.5 bg-red-650 text-white px-3 py-1 rounded-sm text-xs font-mono font-bold uppercase tracking-wider italic">
-            <Calendar className="h-3.5 w-3.5" /> TRADIÇÃO E ATENDIMENTO QUALIFICADO
+            <Building2 className="h-3.5 w-3.5" /> CONHEÇA A MAX PEÇAS
           </div>
-          <h2 className="text-3xl md:text-5xl font-display font-extrabold text-stone-950 italic uppercase tracking-tighter">
-            AUTO PEÇAS MAX LTDA (MAX PEÇAS)
+          <h2 className="text-3xl md:text-5xl font-display font-extrabold text-stone-950 italic uppercase tracking-tighter" id="about-panel-title">
+            Nossa Empresa
           </h2>
           <div className="h-1 w-20 bg-red-650 mx-auto" />
           <p className="text-stone-600 text-base md:text-lg">
-            Estoque de peças seminovas de procedência informada para consulta em Belo Horizonte.
+            Sólida estrutura física e atendimento transparente para garantir a melhor experiência em reposição de autopeças.
           </p>
         </div>
 
         {/* Content Layout Grid */}
-        <div className="grid lg:grid-cols-12 gap-12 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
           
-          {/* Left Column - Big Narrative Card */}
-          <div className="lg:col-span-6 space-y-6">
-            <h3 className="text-2xl md:text-3xl font-display font-extrabold text-stone-900 tracking-tight uppercase italic">
-              Uma história de integridade automotiva construída passo a passo
-            </h3>
-            
-            <p className="text-stone-700 leading-relaxed text-sm md:text-base">
-              Fundada em <strong className="text-stone-900">1995</strong> no coração de Belo Horizonte, a <strong className="text-stone-900">AUTO PECAS MAX LTDA</strong> surgiu com a premissa de oferecer a mecânicos, oficinas e clientes finais uma alternativa segura, viável e qualificada de reposição automotiva.
-            </p>
-
-            <p className="text-stone-700 leading-relaxed text-sm md:text-base">
-              Nosso estoque é composto de peças adquiridas em lotes de frotas comerciais desativadas e empresas parceiras. Todas as peças seminovas passam por uma cuidadosa inspeção visual, higienização e testes práticos de funcionamento antes de serem devidamente catalogadas e comercializadas.
-            </p>
-
-            {/* Strategic visual about section image loaded via our image manager */}
-            <div className="relative aspect-square w-full rounded border border-stone-200 bg-stone-50 overflow-hidden flex items-center justify-center p-4">
-              <img
-                src={getImageUrl('inst-about-main', 'https://images.unsplash.com/photo-1504215680048-db15fc060c3a?auto=format&fit=crop&q=80&w=600')}
-                alt="Equipe Técnica e Estoque de Peças MAX PEÇAS"
-                referrerPolicy="no-referrer"
-                className="max-w-full max-h-full object-contain group-hover:scale-102 transition-transform duration-500"
-              />
-              <div className="absolute inset-x-0 bottom-0 bg-stone-900/60 p-2 text-stone-200 text-[10px] uppercase font-mono text-center">
-                Organização mecânica rigorosa desde a catalogação
-              </div>
+          {/* Left Column - 5 Pillars */}
+          <div className="lg:col-span-6 space-y-8 text-left">
+            <div className="space-y-4">
+              <h3 className="text-2xl md:text-3xl font-display font-extrabold text-stone-900 tracking-tight uppercase italic">
+                Sua compra de peças usadas de forma segura e direta
+              </h3>
+              <p className="text-stone-650 text-sm md:text-base leading-relaxed">
+                A <strong>MAX PEÇAS</strong> atua na comercialização de peças automotivas originais usadas e seminovas com foco na sustentabilidade comercial, fornecendo atendimento consultivo de alta precisão.
+              </p>
             </div>
 
-            <blockquote className="border-l-4 border-red-600 bg-stone-50 p-4 rounded-r italic text-stone-600 text-sm">
-              &quot;Nossa premissa não é simplesmente vender a autopeça mais barata, mas sim assegurar que a peça que entra no seu carro seja original, tenha procedência informada, nota fiscal correspondente e garantia operacional de 3 meses.&quot; 
-              <span className="block mt-2 text-xs font-bold font-mono text-stone-900">— Direção MAX PEÇAS.</span>
-            </blockquote>
-
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2 text-stone-700 text-sm">
-              <div className="flex items-center gap-1.5">
-                <MapPin className="h-5 w-5 text-red-600 flex-shrink-0" />
-                <span>Prado, Belo Horizonte - MG</span>
-              </div>
-              <div className="hidden sm:block text-stone-300">|</div>
-              <div className="flex items-center gap-1.5">
-                <Building2 className="h-5 w-5 text-red-600 flex-shrink-0" />
-                <span>CNPJ: 00.452.917/0001-27</span>
-              </div>
+            {/* List of 5 Highlights */}
+            <div className="space-y-6" id="about-company-pillars">
+              {highlights.map((item, idx) => (
+                <div key={idx} className="flex gap-4 p-4 rounded-lg hover:bg-stone-50 transition-colors border border-transparent hover:border-stone-100">
+                  <div className="flex-shrink-0 p-3 bg-red-50 rounded-md border border-red-100 h-fit">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-display font-extrabold text-stone-950 uppercase italic text-sm md:text-base tracking-wide flex items-center gap-1">
+                      {item.title}
+                    </h4>
+                    <p className="text-stone-600 text-xs md:text-sm mt-1 leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Column - Beautiful Bento-grid like stats container */}
-          <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            
-            <div className="bg-stone-50 border border-stone-150 p-6 rounded-lg space-y-3 relative overflow-hidden group hover:border-red-600 transition-all duration-300">
-              <div className="h-10 w-10 bg-red-600 text-white flex items-center justify-center font-bold text-sm uppercase italic">
-                1995
-              </div>
-              <h4 className="font-display font-bold text-stone-900 text-lg uppercase italic">Histórico Sólido</h4>
+          {/* Right Column - Gallery with real photo cards */}
+          <div className="lg:col-span-6 space-y-6 text-left">
+            <div>
+              <h3 className="text-xl md:text-2xl font-display font-extrabold text-stone-900 uppercase italic tracking-tight mb-2">
+                Galeria da Empresa (Fotos Reais)
+              </h3>
               <p className="text-stone-600 text-xs md:text-sm">
-                Atuando ininterruptamente desde 1995 no polo automotivo do bairro Prado, em BH.
+                Confira imagens de nossas instalações no bairro Prado, Belo Horizonte. Clique na foto para ampliar.
               </p>
             </div>
 
-            <div className="bg-stone-50 border border-stone-150 p-6 rounded-lg space-y-3 relative overflow-hidden group hover:border-red-600 transition-all duration-300">
-              <div className="h-10 w-10 bg-stone-950 text-white flex items-center justify-center">
-                <FileText className="h-5 w-5 text-red-500" />
-              </div>
-              <h4 className="font-display font-bold text-stone-900 text-lg uppercase italic">Nota Fiscal de Entrada</h4>
-              <p className="text-stone-600 text-xs md:text-sm">
-                Atendimento seguro e orientado para total conformidade de procedência e segurança tributária.
-              </p>
+            <div className="grid grid-cols-2 gap-4" id="company-photos-gallery">
+              {gallery.map((photo) => {
+                const url = getImageUrl(photo.id, photo.defaultUrl);
+                return (
+                  <div 
+                    key={photo.id}
+                    id={`gallery-card-${photo.id}`}
+                    onClick={() => setActivePhoto(url)}
+                    className="group relative aspect-video sm:aspect-square bg-stone-100 border border-stone-200 rounded-lg overflow-hidden cursor-pointer shadow-xs hover:shadow-md hover:border-red-600 transition-all duration-300"
+                  >
+                    <img 
+                      src={url} 
+                      alt={photo.title}
+                      referrerPolicy="no-referrer"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent flex flex-col justify-end p-3 sm:p-4 text-left">
+                      <span className="text-[9px] bg-red-650 text-white font-mono font-bold uppercase tracking-widest px-2 py-0.5 rounded-xs w-fit mb-1">
+                        {photo.category}
+                      </span>
+                      <h4 className="text-white font-display font-bold text-xs sm:text-sm uppercase italic tracking-tight leading-tight flex items-center gap-1.5">
+                        {photo.title}
+                        <ZoomIn className="h-3 w-3 text-stone-300 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </h4>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
-            <div className="bg-stone-50 border border-stone-150 p-6 rounded-lg space-y-3 relative overflow-hidden group hover:border-red-600 transition-all duration-300">
-              <div className="h-10 w-10 bg-stone-950 text-white flex items-center justify-center">
-                <BadgeCheck className="h-5 w-5 text-red-500" />
+            {/* Quick Contact CTA */}
+            <div className="bg-stone-50 border border-stone-200 rounded-lg p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div className="text-center sm:text-left">
+                <p className="text-stone-500 text-[10px] font-mono font-bold uppercase">Atendimento Local e Remoto</p>
+                <h4 className="font-display font-extrabold text-stone-950 text-sm md:text-base uppercase italic">Venha nos visitar ou faça uma consulta</h4>
               </div>
-              <h4 className="font-display font-bold text-stone-900 text-lg uppercase italic">Procedência Informada</h4>
-              <p className="text-stone-600 text-xs md:text-sm">
-                Aquisições devidamente catalogadas com nota fiscal e origem de frotas comerciais desativadas.
-              </p>
-            </div>
-
-            <div className="bg-stone-50 border border-stone-150 p-6 rounded-lg space-y-3 relative overflow-hidden group hover:border-red-600 transition-all duration-300">
-              <div className="h-10 w-10 bg-stone-950 text-white flex items-center justify-center">
-                <Sparkles className="h-5 w-5 text-red-500" />
-              </div>
-              <h4 className="font-display font-bold text-stone-900 text-lg uppercase italic">Inovação e Estoque</h4>
-              <p className="text-stone-600 text-xs md:text-sm">
-                Galpão coberto e organizado para armazenar, catalogar e proteger todas as autopeças.
-              </p>
+              <a 
+                href={getWhatsAppUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-red-650 hover:bg-red-700 text-white font-bold text-xs py-3 px-5 rounded-xs uppercase tracking-wide italic transition-colors"
+              >
+                Iniciar Consulta no WhatsApp <ChevronRight className="h-3.5 w-3.5" />
+              </a>
             </div>
 
           </div>
 
-        </div>
-
-        {/* Dynamic bottom counters banner */}
-        <div className="mt-16 bg-[#1A1C1E] text-white rounded-lg p-6 md:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center shadow-lg border-2 border-red-600">
-          {stats.map((s, idx) => (
-            <div key={idx} className="space-y-1">
-              <p className="font-display font-black text-2xl md:text-4xl text-red-500">
-                {s.value}
-              </p>
-              <p className="text-stone-400 font-mono text-[10px] md:text-xs uppercase tracking-wider">
-                {s.label}
-              </p>
-            </div>
-          ))}
         </div>
 
       </div>
+
+      {/* Lightbox Modal */}
+      {activePhoto && (
+        <div 
+          className="fixed inset-0 bg-stone-950/95 z-50 flex items-center justify-center p-4"
+          onClick={() => setActivePhoto(null)}
+          id="lightbox-backdrop"
+        >
+          <button 
+            onClick={() => setActivePhoto(null)}
+            className="absolute top-6 right-6 p-2 bg-stone-900 border border-stone-800 rounded-full text-stone-300 hover:text-white hover:bg-stone-850 cursor-pointer transition-colors"
+          >
+            <X className="h-6 w-6" />
+          </button>
+          <img 
+            src={activePhoto} 
+            alt="Max Peças Zoom"
+            referrerPolicy="no-referrer"
+            className="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl border border-stone-800"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </section>
   );
 }

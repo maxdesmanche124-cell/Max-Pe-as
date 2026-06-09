@@ -192,7 +192,7 @@ export const FAQS: FAQItem[] = [
   {
     id: 'f1',
     question: 'As peças vendidas possuem procedência lícita de frotas desativadas?',
-    answer: 'Sim! Toda e qualquer peça disponível em nosso estoque é oriunda de veículos adquiridos junto a companhias de frotas desativadas ou empresas parceiras, possuindo nota fiscal de origem correspondente. Prezamos pela conformidade jurídica de nossa empresa.'
+    answer: 'Sim! As peças disponíveis em nosso estoque são oriundas de veículos adquiridos junto a companhias de frotas desativadas ou empresas parceiras, possuindo nota fiscal de origem correspondente. Prezamos pela conformidade jurídica de nossa empresa.'
   },
   {
     id: 'f2',

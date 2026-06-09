@@ -24,7 +24,7 @@ export default function HowItWorks() {
     {
       num: '04',
       title: 'Uso e Garantia',
-      description: 'A peça vai selada e com certificado impresso de garantia operacional de 3 meses. Instale com tranquilidade e nota fiscal em mãos.',
+      description: 'A peça vai selada e com o respectivo termo impresso de garantia operacional de 3 meses. Instale com tranquilidade e nota fiscal em mãos.',
       icon: <FileCheck className="h-6 w-6 text-white" />
     }
   ];

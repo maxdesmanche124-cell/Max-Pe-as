@@ -259,7 +259,6 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
     { value: 'all', label: 'Todas as Seções' },
     { value: 'banner', label: 'Banner Principal' },
     { value: 'category', label: 'Categorias de Peças' },
-    { value: 'multimarca', label: 'Multimarcas' },
     { value: 'diferencial', label: 'Diferenciais' },
     { value: 'institutional', label: 'Institucional' },
     { value: 'reviews', label: 'Avaliações' },
@@ -271,8 +270,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
     all: { title: 'Todas as Seções', desc: 'Exibe todo o acervo de imagens do site de uma só vez', icon: '📁' },
     banner: { title: 'Banner Principal', desc: 'Plano de fundo gigante e fotos da seção superior principal', icon: '🖼️' },
     category: { title: 'Categorias de Peças', desc: 'As fotos de autopeças exibidas na grade redonda de departamentos', icon: '⚙️' },
-    multimarca: { title: 'Multimarcas', desc: 'Fotos e logotipos das fabricantes de reposição (Chevrolet, Fiat, Jeep, etc.)', icon: '🚘' },
-    diferencial: { title: 'Diferenciais', desc: 'Fotos internas da seção de Credenciamento e Peças Originais', icon: '👑' },
+    diferencial: { title: 'Diferenciais', desc: 'Fotos internas da seção de Diferenciais e Peças Originais', icon: '👑' },
     institutional: { title: 'Institucional', desc: 'Fotos utilizadas na seção "Sobre Nós" e "Envio para Todo o Brasil"', icon: '🏢' },
     reviews: { title: 'Avaliações de Clientes', desc: 'Avatares de compradores reais exibidos no carrossel de depoimentos', icon: '⭐' },
     general: { title: 'Imagens Gerais', desc: 'Fotos gerais de fachada da loja física, mapa estático ou favicons extras', icon: '📦' }
@@ -468,7 +466,6 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
                     >
                       <option value="banner">Banner Principal</option>
                       <option value="category">Categorias de Peças</option>
-                      <option value="multimarca">Multimarcas</option>
                       <option value="diferencial">Diferenciais</option>
                       <option value="institutional">Institucional</option>
                       <option value="reviews">Avaliações</option>

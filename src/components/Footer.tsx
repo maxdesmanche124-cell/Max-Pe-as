@@ -34,12 +34,12 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
             </div>
             
             <p className="text-xs md:text-sm leading-relaxed text-stone-400">
-              Desde 1995 atuando com ética e respeito às regras de trânsito e meio ambiente. Credenciada nos órgãos de regulação para comercialização de peças com total procedência.
+              Empresa estabelecida em Belo Horizonte desde 1995, especializada no comércio de peças automotivas usadas e seminovas. Oferecemos atendimento por telefone, WhatsApp e e-mail com emissão de nota fiscal em todas as vendas e consulta simplificada de disponibilidade em estoque.
             </p>
 
             <div className="p-3 bg-stone-900/50 rounded-sm border border-stone-850 space-y-1 text-[11px] font-sans">
-              <p className="text-stone-300 font-bold font-mono">AUTORIDADE INDUSTRIAL</p>
-              <p className="text-stone-500">Origem Comprovada & Peças Verificadas</p>
+              <p className="text-stone-300 font-bold font-mono">MAX PEÇAS</p>
+              <p className="text-stone-500">Origem Comprovada & Emissão de Nota Fiscal</p>
             </div>
           </div>
 
@@ -187,8 +187,8 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
               <p className="font-semibold text-stone-300 text-xs text-center md:text-left">
                 AUTO PECAS MAX LTDA | CNPJ: 00.452.917/0001-27
               </p>
-              <p className="text-center md:text-left leading-relaxed">
-                Empresa credenciada em conformidade com a Lei do Desmonte (Lei Federal nº 12.977/2014) e cadastrada nos órgãos ambientais federais e estaduais para a prática de desmonte ecologicamente rastreado.
+              <p className="text-center md:text-left leading-relaxed text-stone-500">
+                Empresa estabelecida em Belo Horizonte desde 1995, especializada no comércio de peças automotivas usadas e seminovas com atendimento presencial, estoque próprio e emissão de nota fiscal em todas as operações.
               </p>
             </div>
             

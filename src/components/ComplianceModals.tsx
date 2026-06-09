@@ -80,7 +80,7 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
                 Atuamos com estoque rotativo diário de autopeças. Em estrita conformidade com as diretrizes do Google Ads, afirmamos que:
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>O catálogo virtual de categorias reflete nosso portfólio regular de atuação, e não uma promessa incondicional de disponibilidade em tempo real de qualquer peça de qualquer fabricante;</li>
+                <li>O catálogo virtual de categorias reflete nosso portfólio regular de atuação, e não uma promessa incondicional de disponibilidade em tempo real de itens específicos de todos os fabricantes;</li>
                 <li>A confirmação do estado de conservação (nova ou seminova), código correspondente original do fabricante e compatibilidade com o chassis mecânico do veículo do cliente dar-se-á exclusivamente na etapa de cotação via WhatsApp.</li>
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Direitos de Propriedade Intelectual</h3>
@@ -117,8 +117,8 @@ export default function ComplianceModals({ activeDoc, onClose }: ComplianceModal
                 As autopeças mecânicas, eletroeletrônicas e de acabamento sofisticado demandam criterioso processo técnico para sua correta aplicação. Para usufruir da garantia de 90 dias, é indispensável que:
               </p>
               <ul className="list-disc pl-5 space-y-1">
-                <li>A peça tenha sido instalada por uma oficina mecânica devidamente credenciada com emissão de Ordem de Serviço (OS) ou nota de prestação de serviços mecânicos de instalação correspondente;</li>
-                <li>A peça de desmonte mantenha as marcas originais invioladas, lacres de selagem comercial ou marcações internas a laser aplicadas por nossa equipe.</li>
+                <li>A peça tenha sido instalada por uma oficina mecânica devidamente estabelecida com emissão de Ordem de Serviço (OS) ou nota de prestação de serviços mecânicos de instalação correspondente;</li>
+                <li>A peça seminova mantenha as marcas originais invioladas, lacres de selagem comercial ou marcações internas a laser aplicadas por nossa equipe.</li>
               </ul>
               <h3 className="font-semibold text-stone-900 mt-4">3. Exclusões da Cobertura de Garantia</h3>
               <p>

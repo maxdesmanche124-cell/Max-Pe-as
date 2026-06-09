@@ -45,12 +45,12 @@ export default function Hero() {
 
             {/* Main Catchy Heading */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-display font-black text-white italic uppercase tracking-tighter leading-[0.95]" id="hero-main-title">
-              Peças automotivas usadas e seminovas com atendimento especializado
+              Peças Automotivas Usadas e Seminovas para Diversos Veículos
             </h1>
 
             {/* Realistic Bullet Substantiation without false promises */}
             <p className="text-base sm:text-lg text-stone-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-sans">
-              Consulte motores, câmbios, módulos, latarias, faróis, lanternas, rodas, suspensão e outras autopeças conforme disponibilidade em estoque. Atendimento para orçamento e consulta de compatibilidade.
+              Consulte disponibilidade de motores, câmbios, latarias, módulos, suspensão, rodas, faróis e outras peças automotivas. Atendimento especializado desde 1995.
             </p>
 
             {/* Horizontal trust parameters badge-group */}

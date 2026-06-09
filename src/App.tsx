@@ -3,7 +3,6 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Categories from './components/Categories';
-import Multimarcas from './components/Multimarcas';
 import Features from './components/Features';
 import Shipping from './components/Shipping';
 import HowItWorks from './components/HowItWorks';
@@ -139,9 +138,6 @@ export default function App() {
         <main id="app-main-sections">
           {/* 1. Hero Section */}
           <Hero key={`hero-${imagesVersion}`} />
-
-          {/* 1.5 Trabalhamos com Peças de Multimarcas (Movida para baixo do Hero) */}
-          <Multimarcas key={`multimarcas-${imagesVersion}`} />
 
           {/* 2. Sobre a Empresa */}
           <About key={`about-${imagesVersion}`} />

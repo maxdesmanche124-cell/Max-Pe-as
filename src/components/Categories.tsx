@@ -55,7 +55,7 @@ export default function Categories() {
               Categorias em <span className="text-red-600">Destaque</span>
             </h2>
             <p className="text-stone-600 text-sm md:text-base">
-              Explore nossa ampla linha de componentes mecânicos, acabamentos e acessórios originais seminovos da MAXPEÇAS.
+              Explore nossa ampla linha de componentes mecânicos, acabamentos e acessórios originais seminovos da MAX PEÇAS.
             </p>
           </div>
 
@@ -189,6 +189,13 @@ export default function Categories() {
             </a>
           </div>
         )}
+
+        {/* Brand Compatibility Disclaimer */}
+        <div className="mt-12 text-center max-w-4xl mx-auto border-t border-stone-200/60 pt-8" id="categories-branding-disclaimer">
+          <p className="text-[11px] md:text-xs leading-relaxed text-stone-500 font-sans px-4">
+            Trabalhamos com peças usadas e seminovas compatíveis com veículos de diversas marcas. A MAX PEÇAS não é concessionária, representante oficial ou assistência autorizada das marcas exibidas. As marcas pertencem aos seus respectivos proprietários e são citadas apenas para indicar compatibilidade de peças.
+          </p>
+        </div>
 
       </div>
     </section>

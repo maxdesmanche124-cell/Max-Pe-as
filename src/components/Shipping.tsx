@@ -46,14 +46,14 @@ export default function Shipping() {
             <div className="h-1 w-20 bg-red-600" />
             
             <p className="text-stone-300 text-sm md:text-base leading-relaxed">
-              Atendemos de forma expressa Belo Horizonte, toda a região metropolitana (Contagem, Betim, Nova Lima, etc.) e distribuímos autopeças qualificadas para qualquer cidade do território nacional através de transportadoras rodoviárias e aéreas credenciadas.
+              Atendemos de forma expressa Belo Horizonte, toda a região metropolitana (Contagem, Betim, Nova Lima, etc.) e enviamos autopeças para qualquer cidade do território nacional através de transportadoras rodoviárias e aéreas parceiras.
             </p>
 
             {/* Strategic Image */}
             <div className="relative h-60 md:h-72 w-full rounded-lg overflow-hidden border border-stone-800 shadow-xl group">
               <img
                 src={getImageUrl('inst-shipping-main', 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=600')}
-                alt="Logística de Distribuição e Transporte MAXPEÇAS"
+                alt="Logística de Distribuição e Transporte MAX PEÇAS"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover object-center group-hover:scale-103 transition-transform duration-500 opacity-90"
               />
