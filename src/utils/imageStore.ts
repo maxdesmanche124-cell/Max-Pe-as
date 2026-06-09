@@ -355,6 +355,10 @@ export function updateImageUrl(id: string, newUrl: string): SiteImage[] {
   // Intercept category image update and save directly to Supabase table 'category_images'
   if (id.startsWith('category-img-')) {
     const categoryId = id.replace('category-img-', '');
+    categoryImagesCache[categoryId] = newUrl;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(`maxpecas_category_img_${categoryId}`, newUrl);
+    }
     if (isSupabaseConfigured() && supabase) {
       saveCategoryImageToSupabase(categoryId, newUrl);
     }
@@ -439,6 +443,10 @@ export function resetImageToDefault(id: string): SiteImage[] {
   // If a category image is reset, remove it from the Supabase table 'category_images'
   if (id.startsWith('category-img-')) {
     const categoryId = id.replace('category-img-', '');
+    delete categoryImagesCache[categoryId];
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(`maxpecas_category_img_${categoryId}`);
+    }
     if (isSupabaseConfigured() && supabase) {
       deleteCategoryImageFromSupabase(categoryId);
     }

@@ -47,6 +47,7 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
   const [isReplacing, setIsReplacing] = useState(false);
   const [isMigrating, setIsMigrating] = useState(false);
   const [migrationProgress, setMigrationProgress] = useState('');
+  const [isSyncingCategories, setIsSyncingCategories] = useState(false);
 
   // Sync state on load or change
   useEffect(() => {
@@ -230,6 +231,26 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
     } finally {
       setIsMigrating(false);
       setMigrationProgress('');
+    }
+  };
+
+  // Synchronize category images directly from Supabase table 'category_images'
+  const handleSyncCategoryImages = async () => {
+    if (!isSupbaseActive) {
+      alert('O Supabase não está ativo ou configurado. Por favor, verifique suas chaves de API nas configurações.');
+      return;
+    }
+    setIsSyncingCategories(true);
+    try {
+      const { fetchCategoryImagesFromSupabase } = await import('../utils/imageStore');
+      await fetchCategoryImagesFromSupabase();
+      setImages(getSavedImages());
+      showFeedback('Sincronização concluída! As mídias das categorias cadastradas no Supabase foram recarregadas com sucesso.');
+    } catch (err: any) {
+      console.error(err);
+      alert('Falha na sincronização das imagens de categorias: ' + err.message);
+    } finally {
+      setIsSyncingCategories(false);
     }
   };
 
@@ -587,13 +608,27 @@ export default function AdminPanel({ isOpen, onClose }: AdminPanelProps) {
                   </div>
 
                   {/* Active Tab Explanation block */}
-                  <div className="bg-[#151618] border border-stone-850 p-2.5 rounded-sm flex items-center justify-between text-xs text-stone-300">
-                    <div className="flex items-center gap-2">
-                      <span className="text-base">{tabMetas[filterCategory]?.icon}</span>
-                      <p className="text-[11px] leading-relaxed">
-                        <strong className="text-emerald-400 uppercase font-black mr-1">{tabMetas[filterCategory]?.title}:</strong>
-                        <span className="text-stone-400">{tabMetas[filterCategory]?.desc}</span>
-                      </p>
+                  <div className="bg-[#151618] border border-stone-850 p-2.5 rounded-sm text-xs text-stone-300">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between w-full gap-3">
+                      <div className="flex items-center gap-2">
+                        <span className="text-base">{tabMetas[filterCategory]?.icon}</span>
+                        <p className="text-[11px] leading-relaxed text-left">
+                          <strong className="text-emerald-400 uppercase font-black mr-1">{tabMetas[filterCategory]?.title}:</strong>
+                          <span className="text-stone-400">{tabMetas[filterCategory]?.desc}</span>
+                        </p>
+                      </div>
+                      
+                      {filterCategory === 'category' && isSupbaseActive && (
+                        <button
+                          type="button"
+                          onClick={handleSyncCategoryImages}
+                          disabled={isSyncingCategories}
+                          className="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 disabled:opacity-50 text-white font-bold text-[10px] uppercase tracking-wider px-3 py-1.5 rounded-sm cursor-pointer whitespace-nowrap transition-colors"
+                        >
+                          <RefreshCw className={`h-3 w-3 ${isSyncingCategories ? 'animate-spin' : ''}`} />
+                          {isSyncingCategories ? 'Sincronizando...' : 'Sincronizar imagens do Supabase'}
+                        </button>
+                      )}
                     </div>
                   </div>
                 </div>
