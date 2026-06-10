@@ -25,14 +25,35 @@ export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: Hea
   }, []);
 
   const navLinks = [
-    { name: 'Sobre', href: '#sobre' },
-    { name: 'Categorias', href: '#categorias' },
-    { name: 'Diferenciais', href: '#diferenciais' },
-    { name: 'Como Funciona', href: '#como-funciona' },
-    { name: 'Avaliações', href: '#depoimentos' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Localização', href: '#localizacao' }
+    { name: 'Sobre', href: '#sobre', isAnchor: true },
+    { name: 'Categorias', href: '#categorias', isAnchor: true },
+    { name: 'Como Funciona', href: '#como-funciona', isAnchor: true },
+    { name: 'Rastrear Pedido', href: '/rastrear-pedido', isAnchor: false },
+    { name: 'Contato', href: '/contato', isAnchor: false }
   ];
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, link: typeof navLinks[0]) => {
+    if (!link.isAnchor) {
+      if (onNavigate) {
+        e.preventDefault();
+        onNavigate(link.href);
+      }
+    } else {
+      if (onNavigate && currentPath !== '/') {
+        e.preventDefault();
+        onNavigate('/');
+        setTimeout(() => {
+          const id = link.href.replace('#', '');
+          const el = document.getElementById(id);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.location.hash = link.href;
+          }
+        }, 150);
+      }
+    }
+  };
 
   const whatsAppUrl = 'https://wa.me/558000003728?text=Olá,%20gostaria%20de%20fazer%20um%20orçamento.';
 
@@ -79,16 +100,12 @@ export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: Hea
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => {
-                  if (onNavigate && currentPath !== '/') {
-                    e.preventDefault();
-                    onNavigate('/');
-                    setTimeout(() => {
-                      window.location.hash = link.href;
-                    }, 100);
-                  }
-                }}
-                className="text-sm font-medium text-stone-300 hover:text-white px-3 py-2 rounded-md transition-colors"
+                onClick={(e) => handleLinkClick(e, link)}
+                className={`text-sm font-medium px-3 py-2 rounded-md transition-colors ${
+                  currentPath === link.href 
+                    ? 'text-red-500 font-bold' 
+                    : 'text-stone-300 hover:text-white'
+                }`}
               >
                 {link.name}
               </a>
@@ -152,15 +169,13 @@ export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: Hea
                 href={link.href}
                 onClick={(e) => {
                   setIsOpen(false);
-                  if (onNavigate && currentPath !== '/') {
-                    e.preventDefault();
-                    onNavigate('/');
-                    setTimeout(() => {
-                      window.location.hash = link.href;
-                    }, 100);
-                  }
+                  handleLinkClick(e, link);
                 }}
-                className="block text-base font-medium text-stone-300 hover:text-white hover:bg-stone-900 px-3 py-2.5 rounded-md transition-all border-b border-stone-900 last:border-0"
+                className={`block text-base font-medium px-3 py-2.5 rounded-md transition-all border-b border-stone-900 last:border-0 ${
+                  currentPath === link.href 
+                    ? 'text-red-500 bg-stone-900 font-bold' 
+                    : 'text-stone-300 hover:text-white hover:bg-stone-900'
+                }`}
               >
                 {link.name}
               </a>
@@ -179,17 +194,17 @@ export default function Header({ onOpenDoc, onNavigate, currentPath = '/' }: Hea
               </a>
               <div className="flex justify-around text-xs text-stone-400 pt-2 border-t border-stone-900">
                 <a 
-                  href="/trocas-garantia-procedencia"
+                  href="/politica-de-garantia"
                   onClick={(e) => {
                     setIsOpen(false);
                     if (onNavigate) {
                       e.preventDefault();
-                      onNavigate('/trocas-garantia-procedencia');
+                      onNavigate('/politica-de-garantia');
                     }
                   }}
                   className="hover:text-white cursor-pointer active:text-red-500"
                 >
-                  Garantia e Trocas
+                  Garantia / Trocas
                 </a>
                 <a 
                   href="/politica-de-privacidade"

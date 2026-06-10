@@ -116,7 +116,16 @@ export default function App() {
     }
   };
 
-  const isLegalPath = ['/politica-de-privacidade', '/termos-de-uso', '/trocas-garantia-procedencia'].includes(currentPath);
+  const isLegalPath = [
+    '/politica-de-privacidade',
+    '/termos-de-uso',
+    '/trocas-garantia-procedencia',
+    '/politica-de-garantia',
+    '/politica-de-troca-e-devolucao',
+    '/politica-de-envio-e-entrega',
+    '/rastrear-pedido',
+    '/contato'
+  ].includes(currentPath);
 
   return (
     <div className="relative min-h-screen bg-stone-50 select-text font-sans scroll-smooth" id="app-viewport-root">

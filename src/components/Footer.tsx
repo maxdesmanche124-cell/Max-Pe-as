@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Scale, ChevronRight, FileText, ShieldAlert } from 'lucide-react';
+import { Mail, Phone, MapPin, Scale, ChevronRight, FileText, ShieldAlert, Truck } from 'lucide-react';
 import { ComplianceDocType } from '../types';
 
 interface FooterProps {
@@ -83,9 +83,9 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
           {/* Column 3 - Corporate Compliance Pages (Google Ads Core requirement) */}
           <div className="space-y-4 text-left" id="footer-compliance-links">
             <h3 className="text-white font-display font-bold text-sm uppercase tracking-widest border-l-2 border-red-600 pl-2">
-              Políticas e Contratos
+              Institucional e Políticas
             </h3>
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-xs md:text-sm">
               <li>
                 <a
                   href="/politica-de-privacidade"
@@ -118,24 +118,84 @@ export default function Footer({ onOpenDoc, onNavigate }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="/trocas-garantia-procedencia"
+                  href="/politica-de-garantia"
                   onClick={(e) => {
                     if (onNavigate) {
                       e.preventDefault();
-                      onNavigate('/trocas-garantia-procedencia');
+                      onNavigate('/politica-de-garantia');
                     }
                   }}
                   className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
                 >
                   <FileText className="h-3.5 w-3.5 text-red-500" />
-                  Trocas, Garantia e Procedência
+                  Política de Garantia
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/politica-de-troca-e-devolucao"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/politica-de-troca-e-devolucao');
+                    }
+                  }}
+                  className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
+                >
+                  <FileText className="h-3.5 w-3.5 text-red-500" />
+                  Política de Troca e Devolução
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/politica-de-envio-e-entrega"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/politica-de-envio-e-entrega');
+                    }
+                  }}
+                  className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors"
+                >
+                  <FileText className="h-3.5 w-3.5 text-red-500" />
+                  Política de Envio e Entrega
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/rastrear-pedido"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/rastrear-pedido');
+                    }
+                  }}
+                  className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors text-red-400 font-semibold"
+                >
+                  <Truck className="h-3.5 w-3.5 text-emerald-500" />
+                  Rastrear Pedido
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contato"
+                  onClick={(e) => {
+                    if (onNavigate) {
+                      e.preventDefault();
+                      onNavigate('/contato');
+                    }
+                  }}
+                  className="hover:text-white flex items-center gap-1.5 cursor-pointer text-left transition-colors text-stone-300"
+                >
+                  <Phone className="h-3.5 w-3.5 text-emerald-500" />
+                  Contato Oficial
                 </a>
               </li>
             </ul>
 
-            <div className="pt-2 text-stone-500 text-[10px] space-y-1">
+            <div className="pt-1 text-stone-500 text-[10px] space-y-1">
               <p>• Ribeirão Preto - SP</p>
-              <p>• Estoque Catalogado sem Promessas Falsas</p>
+              <p>• Consulta de disponibilidade sem promessas falsas</p>
             </div>
           </div>
 
